@@ -1,0 +1,1606 @@
+{
+  "shaping-kozmik": [
+    {
+      "file": "ShapingKozmik_pg1.mp4",
+      "type": "video",
+      "w": 1080,
+      "h": 1080,
+      "src": "01.mp4",
+      "poster": "01-poster.webp"
+    },
+    {
+      "file": "ShapingKozmik_pg2.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "02-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "02-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "02-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "02-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "ShapingKozmik_pg3.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "03-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "03-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "03-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "03-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "ShapingKozmik_pg4.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "04-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "04-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "04-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "04-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "ShapingKozmik_pg5.1.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "05-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "05-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "05-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "05-2400.webp"
+        }
+      ]
+    }
+  ],
+  "dna-collectives": [
+    {
+      "file": "DNA_Page1.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "01-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "01-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "01-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "01-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "DNA_Page2.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "02-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "02-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "02-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "02-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "DNA_Page3.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "03-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "03-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "03-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "03-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "DNA_Page4.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "04-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "04-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "04-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "04-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "DNA_Page5.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "05-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "05-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "05-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "05-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "DNA_Page6.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "06-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "06-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "06-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "06-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "DNA_Page7.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "07-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "07-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "07-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "07-2400.webp"
+        }
+      ]
+    }
+  ],
+  "mk-dwin": [
+    {
+      "file": "MKDWIN_Page1.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "01-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "01-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "01-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "01-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "MKDWIN_Page2.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "02-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "02-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "02-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "02-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "MKDWIN_Page3.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "03-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "03-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "03-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "03-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "MKDWIN_Page4.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "04-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "04-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "04-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "04-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "MKDWIN_Page5.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "05-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "05-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "05-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "05-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "MKDWIN_Page6.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "06-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "06-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "06-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "06-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "MKDWIN_Page7.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "07-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "07-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "07-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "07-2400.webp"
+        }
+      ]
+    }
+  ],
+  "the-rocketeerz": [
+    {
+      "file": "RocketeerzLogoShowcase_1.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "01-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "01-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "01-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "01-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "RocketeerzLogoShowcase_2.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "02-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "02-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "02-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "02-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "RocketeerzLogoShowcase_3.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "03-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "03-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "03-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "03-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "RocketeerzLogoShowcase_4.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "04-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "04-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "04-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "04-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "RocketeerzDPSticker.png",
+      "type": "image",
+      "w": 2319,
+      "h": 2319,
+      "variants": [
+        {
+          "w": 480,
+          "src": "05-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "05-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "05-1600.webp"
+        },
+        {
+          "w": 2319,
+          "src": "05-2319.webp"
+        }
+      ]
+    },
+    {
+      "file": "RocketeerzLaptopSticker.png",
+      "type": "image",
+      "w": 4500,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "06-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "06-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "06-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "06-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "RocketeerzSweatshirt.png",
+      "type": "image",
+      "w": 2048,
+      "h": 2048,
+      "variants": [
+        {
+          "w": 480,
+          "src": "07-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "07-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "07-1600.webp"
+        },
+        {
+          "w": 2048,
+          "src": "07-2048.webp"
+        }
+      ]
+    },
+    {
+      "file": "RocketeerzSocks.png",
+      "type": "image",
+      "w": 3200,
+      "h": 4248,
+      "variants": [
+        {
+          "w": 480,
+          "src": "08-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "08-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "08-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "08-2400.webp"
+        }
+      ]
+    }
+  ],
+  "beni-den-wedding": [
+    {
+      "file": "Beni&DenIGShowcase1.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3750,
+      "variants": [
+        {
+          "w": 480,
+          "src": "01-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "01-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "01-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "01-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "BeniDen_IGShowcase.mp4",
+      "type": "video",
+      "w": 1080,
+      "h": 1350,
+      "src": "02.mp4",
+      "poster": "02-poster.webp"
+    },
+    {
+      "file": "Beni&DenIGShowcase2.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3750,
+      "variants": [
+        {
+          "w": 480,
+          "src": "03-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "03-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "03-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "03-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "OffWedPicsIG1.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3750,
+      "variants": [
+        {
+          "w": 480,
+          "src": "04-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "04-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "04-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "04-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "OffWedPicsIG2.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3750,
+      "variants": [
+        {
+          "w": 480,
+          "src": "05-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "05-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "05-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "05-2400.webp"
+        }
+      ]
+    }
+  ],
+  "aa-garage-sticker": [
+    {
+      "file": "AAGarage_Sticker (NoStroke).png",
+      "type": "image",
+      "w": 6603,
+      "h": 3085,
+      "variants": [
+        {
+          "w": 480,
+          "src": "01-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "01-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "01-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "01-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "AAGarage_MockUpSticker.png",
+      "type": "image",
+      "w": 4500,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "02-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "02-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "02-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "02-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "Sticks.jpg",
+      "type": "image",
+      "w": 3024,
+      "h": 4032,
+      "variants": [
+        {
+          "w": 480,
+          "src": "03-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "03-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "03-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "03-2400.webp"
+        }
+      ]
+    }
+  ],
+  "birthday-standee": [
+    {
+      "file": "Khalil_Spiderboy.png",
+      "type": "image",
+      "w": 432,
+      "h": 1296,
+      "variants": [
+        {
+          "w": 432,
+          "src": "01-432.webp"
+        }
+      ]
+    }
+  ],
+  "bootleg-standee": [
+    {
+      "file": "JobertBootleg-Final.png",
+      "type": "image",
+      "w": 1400,
+      "h": 3294,
+      "variants": [
+        {
+          "w": 480,
+          "src": "01-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "01-960.webp"
+        },
+        {
+          "w": 1400,
+          "src": "01-1400.webp"
+        }
+      ]
+    },
+    {
+      "file": "joba[[.jpg",
+      "type": "image",
+      "w": 3024,
+      "h": 3024,
+      "variants": [
+        {
+          "w": 480,
+          "src": "02-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "02-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "02-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "02-2400.webp"
+        }
+      ]
+    }
+  ],
+  "chucky-mirror-sticker": [
+    {
+      "file": "ChuckyMirror_pg1.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3750,
+      "variants": [
+        {
+          "w": 480,
+          "src": "01-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "01-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "01-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "01-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "ChuckyMirror_pg2.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3750,
+      "variants": [
+        {
+          "w": 480,
+          "src": "02-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "02-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "02-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "02-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "ChuckyMirror_pg3.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3750,
+      "variants": [
+        {
+          "w": 480,
+          "src": "03-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "03-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "03-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "03-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "ChuckyMirror_pg4.mp4",
+      "type": "video",
+      "w": 1024,
+      "h": 1280,
+      "src": "04.mp4",
+      "poster": "04-poster.webp"
+    },
+    {
+      "file": "ChuckyMirror_pg5.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3750,
+      "variants": [
+        {
+          "w": 480,
+          "src": "05-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "05-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "05-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "05-2400.webp"
+        }
+      ]
+    }
+  ],
+  "balagbagan-sa-bulacan": [
+    {
+      "file": "blgbgnsablcn_Showcase1.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3750,
+      "variants": [
+        {
+          "w": 480,
+          "src": "01-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "01-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "01-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "01-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "pg2Showcase.mp4",
+      "type": "video",
+      "w": 1080,
+      "h": 1350,
+      "src": "02.mp4",
+      "poster": "02-poster.webp"
+    },
+    {
+      "file": "blgbgnsablcn_Showcase3.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3750,
+      "variants": [
+        {
+          "w": 480,
+          "src": "03-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "03-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "03-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "03-2400.webp"
+        }
+      ]
+    }
+  ],
+  "ran-celestial": [
+    {
+      "file": "RanCelestial_ServerDetailsFinal.png",
+      "type": "image",
+      "w": 3150,
+      "h": 3150,
+      "variants": [
+        {
+          "w": 480,
+          "src": "01-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "01-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "01-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "01-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "RanCelestial_BTTW.png",
+      "type": "image",
+      "w": 2100,
+      "h": 2100,
+      "variants": [
+        {
+          "w": 480,
+          "src": "02-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "02-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "02-1600.webp"
+        },
+        {
+          "w": 2100,
+          "src": "02-2100.webp"
+        }
+      ]
+    },
+    {
+      "file": "RanCelestial_Discord.png",
+      "type": "image",
+      "w": 2100,
+      "h": 2100,
+      "variants": [
+        {
+          "w": 480,
+          "src": "03-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "03-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "03-1600.webp"
+        },
+        {
+          "w": 2100,
+          "src": "03-2100.webp"
+        }
+      ]
+    },
+    {
+      "file": "RanCelestial_WelcomeFD.png",
+      "type": "image",
+      "w": 2100,
+      "h": 2100,
+      "variants": [
+        {
+          "w": 480,
+          "src": "04-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "04-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "04-1600.webp"
+        },
+        {
+          "w": 2100,
+          "src": "04-2100.webp"
+        }
+      ]
+    },
+    {
+      "file": "RanCelestial_WelcomeH20.png",
+      "type": "image",
+      "w": 2100,
+      "h": 2100,
+      "variants": [
+        {
+          "w": 480,
+          "src": "05-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "05-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "05-1600.webp"
+        },
+        {
+          "w": 2100,
+          "src": "05-2100.webp"
+        }
+      ]
+    }
+  ],
+  "ran-online-havoc": [
+    {
+      "file": "HavocServer.png",
+      "type": "image",
+      "w": 2512,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "01-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "01-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "01-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "01-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "Havoc_OngoingBT.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "02-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "02-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "02-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "02-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "Havoc_OffUpTom.png",
+      "type": "image",
+      "w": 2512,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "03-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "03-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "03-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "03-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "Havoc_OfficiallyUp.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "04-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "04-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "04-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "04-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "Havoc_RaceTo+9.png",
+      "type": "image",
+      "w": 2512,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "05-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "05-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "05-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "05-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "Havoc_DryRun.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "06-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "06-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "06-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "06-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "Havoc_TW.png",
+      "type": "image",
+      "w": 2512,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "07-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "07-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "07-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "07-2400.webp"
+        }
+      ]
+    }
+  ],
+  "ran-online-ep4": [
+    {
+      "file": "EP4_Countdown2days.png",
+      "type": "image",
+      "w": 2100,
+      "h": 2100,
+      "variants": [
+        {
+          "w": 480,
+          "src": "01-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "01-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "01-1600.webp"
+        },
+        {
+          "w": 2100,
+          "src": "01-2100.webp"
+        }
+      ]
+    },
+    {
+      "file": "EP4_BetaTestOngoing.png",
+      "type": "image",
+      "w": 2100,
+      "h": 2100,
+      "variants": [
+        {
+          "w": 480,
+          "src": "02-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "02-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "02-1600.webp"
+        },
+        {
+          "w": 2100,
+          "src": "02-2100.webp"
+        }
+      ]
+    },
+    {
+      "file": "ROPH4_BetaRewards.png",
+      "type": "image",
+      "w": 2100,
+      "h": 2100,
+      "variants": [
+        {
+          "w": 480,
+          "src": "03-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "03-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "03-1600.webp"
+        },
+        {
+          "w": 2100,
+          "src": "03-2100.webp"
+        }
+      ]
+    },
+    {
+      "file": "EP4_MiniTW.png",
+      "type": "image",
+      "w": 2100,
+      "h": 2100,
+      "variants": [
+        {
+          "w": 480,
+          "src": "04-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "04-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "04-1600.webp"
+        },
+        {
+          "w": 2100,
+          "src": "04-2100.webp"
+        }
+      ]
+    },
+    {
+      "file": "RanPHEp3_BetaPoster.png",
+      "type": "image",
+      "w": 3600,
+      "h": 1890,
+      "variants": [
+        {
+          "w": 480,
+          "src": "05-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "05-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "05-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "05-2400.webp"
+        }
+      ]
+    },
+    {
+      "file": "RanPHEp3_CoverPhoto.png",
+      "type": "image",
+      "w": 3150,
+      "h": 1166,
+      "variants": [
+        {
+          "w": 480,
+          "src": "06-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "06-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "06-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "06-2400.webp"
+        }
+      ]
+    }
+  ],
+  "ran-ph-level-up": [
+    {
+      "file": "AnoServer.png",
+      "type": "image",
+      "w": 2100,
+      "h": 2100,
+      "variants": [
+        {
+          "w": 480,
+          "src": "01-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "01-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "01-1600.webp"
+        },
+        {
+          "w": 2100,
+          "src": "01-2100.webp"
+        }
+      ]
+    },
+    {
+      "file": "ROPLU_BetaRewards.png",
+      "type": "image",
+      "w": 2100,
+      "h": 2100,
+      "variants": [
+        {
+          "w": 480,
+          "src": "02-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "02-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "02-1600.webp"
+        },
+        {
+          "w": 2100,
+          "src": "02-2100.webp"
+        }
+      ]
+    },
+    {
+      "file": "ROPLU_WelcomeXnar.png",
+      "type": "image",
+      "w": 2100,
+      "h": 2100,
+      "variants": [
+        {
+          "w": 480,
+          "src": "03-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "03-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "03-1600.webp"
+        },
+        {
+          "w": 2100,
+          "src": "03-2100.webp"
+        }
+      ]
+    },
+    {
+      "file": "RanCelestial_TopUpPromo.png",
+      "type": "image",
+      "w": 2100,
+      "h": 2100,
+      "variants": [
+        {
+          "w": 480,
+          "src": "04-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "04-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "04-1600.webp"
+        },
+        {
+          "w": 2100,
+          "src": "04-2100.webp"
+        }
+      ]
+    },
+    {
+      "file": "ROPLU_LF.png",
+      "type": "image",
+      "w": 2400,
+      "h": 1260,
+      "variants": [
+        {
+          "w": 480,
+          "src": "05-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "05-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "05-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "05-2400.webp"
+        }
+      ]
+    }
+  ]
+}
