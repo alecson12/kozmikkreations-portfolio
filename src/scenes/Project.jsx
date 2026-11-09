@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Arrow, Chevron } from '../components/Bits.jsx'
+import { Arrow } from '../components/Bits.jsx'
 import Carousel from '../components/Carousel.jsx'
 import Gallery from '../components/Gallery.jsx'
 import Lightbox from '../components/Lightbox.jsx'
@@ -25,21 +25,16 @@ export default function Project({ projectId, phase }) {
   }, [zoomed])
 
   const header = (
-    <div className="rise flex flex-none items-end justify-between gap-6 px-5 pb-4 sm:px-8 lg:px-12" style={{ '--d': '60ms' }}>
-      <div className="min-w-0">
-        <p className="eyebrow truncate">{project.kind}</p>
+    <div className="rise flex flex-none flex-col items-start gap-4 px-5 pb-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6 sm:px-8 lg:px-12" style={{ '--d': '60ms' }}>
+      <a href={links.universe} className="btn min-h-11 flex-none px-4 text-[10px] sm:px-6">
+        <Arrow dir="left" size={14} className="order-first" />
+        <span>Explore Projects</span>
+      </a>
+      <div className="min-w-0 self-end text-right sm:self-auto">
+        <p className="eyebrow truncate">
+          {project.kind} <span className="mx-2 text-faint">·</span> {project.number} / {total}
+        </p>
         <h1 className="display chrome-text mt-2.5 text-balance text-[clamp(17px,2.5vw,30px)]">{project.title}</h1>
-      </div>
-      <div className="flex flex-none items-center gap-2 sm:gap-3">
-        <span className="label hidden text-[10px] tabular-nums text-mute sm:block">
-          <span className="text-ink">{project.number}</span> / {total}
-        </span>
-        <a href={prev.href} className="icon-btn" aria-label={`Previous project: ${prev.title}`} title={prev.title}>
-          <Chevron dir="left" />
-        </a>
-        <a href={next.href} className="icon-btn" aria-label={`Next project: ${next.title}`} title={next.title}>
-          <Chevron />
-        </a>
       </div>
     </div>
   )
@@ -69,7 +64,7 @@ export default function Project({ projectId, phase }) {
         </span>
       </a>
       <a href={links.universe} className="label col-span-2 mt-3 flex items-center justify-center gap-3 py-3 text-[10px] text-mute transition-colors hover:text-ink">
-        <Arrow dir="left" size={13} /> Back to the universe
+        <Arrow dir="left" size={13} /> Back to all projects
       </a>
     </nav>
   )

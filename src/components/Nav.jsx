@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { links } from '../lib/router.js'
-import { Arrow, Mark, Wordmark } from './Bits.jsx'
+import { Mark, Wordmark } from './Bits.jsx'
 
 const ITEMS = [
   { id: 'home', label: 'Home', href: links.home },
   { id: 'about', label: 'About', href: links.about },
-  { id: 'universe', label: 'Universe', href: links.universe },
+  { id: 'universe', label: 'Explore Projects', href: links.universe },
   { id: 'contact', label: 'Contact', href: links.contact },
 ]
 
@@ -33,12 +33,6 @@ export default function Nav({ route }) {
             <Mark className="w-7 sm:w-8" />
             <Wordmark className="hidden h-[22px] w-auto opacity-95 sm:block" />
           </a>
-          {inProject && (
-            <a href={links.universe} className="label flex items-center gap-2.5 text-mute transition-colors hover:text-ink">
-              <Arrow dir="left" size={14} />
-              <span>Universe</span>
-            </a>
-          )}
         </div>
 
         <nav aria-label="Main" className="pointer-events-auto hidden items-center gap-9 md:flex">

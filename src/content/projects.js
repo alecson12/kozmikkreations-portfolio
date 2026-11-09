@@ -18,8 +18,8 @@
 // The planetary systems, left to right in the universe. A project joins a system
 // through its `system` field. The labels are the names of the folders in Projects/.
 export const SYSTEMS = [
-  { id: 'origin', label: 'Kozmik Kreations' },
   { id: 'logos', label: 'Logo Projects' },
+  { id: 'shirts', label: 'Shirt Designs' },
   { id: 'invitation', label: 'Invitation' },
   { id: 'prints', label: 'Prints' },
   { id: 'pubmats', label: 'Pubmats' },
@@ -29,30 +29,6 @@ export const SYSTEMS = [
 // planet.colors: three colours taken from the project's own artwork
 // planet.size: 1 is average · planet.ring / planet.moons are optional
 export const PROJECTS = [
-  {
-    id: 'shaping-kozmik',
-    title: 'Shaping Kozmik Kreations',
-    kind: 'Brand Identity',
-    system: 'origin',
-    folder: '_KozmikKreations',
-    layout: 'carousel',
-    slides: [
-      'ShapingKozmik_pg1.mp4',
-      'ShapingKozmik_pg2.png',
-      'ShapingKozmik_pg3.png',
-      'ShapingKozmik_pg4.png',
-      'ShapingKozmik_pg5.1.png',
-    ],
-    planet: {
-      type: 'chrome',
-      size: 1.3,
-      colors: ['#0b1430', '#8fa9d8', '#f4f7ff'],
-      atmosphere: '#9db9ff',
-      ring: { inner: 1.45, outer: 2.25, color: '#c9d6f2', tilt: 0.34, roll: -0.32 },
-      moons: 1,
-    },
-  },
-
   // ── Logo Projects ─────────────────────────────────────────────────────────
   {
     id: 'dna-collectives',
@@ -123,6 +99,50 @@ export const PROJECTS = [
       size: 0.85,
       colors: ['#2a0c0b', '#9c2f2a', '#e2b9a8'],
       atmosphere: '#ff7a66',
+    },
+  },
+
+  // ── Shirt Designs ─────────────────────────────────────────────────────────
+  {
+    id: 'the-clan-crew-shirt',
+    title: 'The Clan Crew Shirt',
+    kind: 'Crew Shirt',
+    system: 'shirts',
+    folder: 'Shirt Designs/The Clan (Crew Shirt)',
+    layout: 'carousel',
+    slides: [
+      'TheClanShirt_Showcase_01.png',
+      'TheClanShirt_Showcase_02.png',
+      'TheClanShirt_Showcase_03.png',
+      'TheClanShirt_Showcase_04.png',
+      'TheClanShirt_Showcase_05.png',
+    ],
+    planet: {
+      type: 'gas',
+      size: 1.05,
+      colors: ['#2a0906', '#8c1a12', '#dcae4a'],
+      atmosphere: '#f0c25c',
+      moons: 1,
+    },
+  },
+  {
+    id: 'dna-x-the-clan-jersey',
+    title: 'DNA Collectives × The Clan',
+    kind: 'Jersey Shirt',
+    system: 'shirts',
+    folder: 'Shirt Designs/DNA Collectives X The Clan',
+    layout: 'carousel',
+    slides: [
+      'DNAxTheClan_JerseyShirt-(Carousel)_01.png',
+      'DNAxTheClan_JerseyShirt-(Carousel)_02.png',
+      'DNAxTheClan_JerseyShirt-(Carousel)_03.png',
+      'DNAxTheClan_JerseyShirt-(Carousel)_04.png',
+    ],
+    planet: {
+      type: 'rock',
+      size: 0.9,
+      colors: ['#0d0a16', '#3a2763', '#9a86d6'],
+      atmosphere: '#8f72ff',
     },
   },
 

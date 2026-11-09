@@ -1,6 +1,6 @@
 // Pages are addressed with the part after # in the address bar:
 //   #/            home          #/about      about
-//   #/universe    the planets   #/contact    contact
+//   #/projects    the planets   #/contact    contact   (#/universe still works)
 //   #/project/<id>  one project
 // This works on GitHub Pages without any server setup, and Back / Forward work.
 
@@ -10,13 +10,14 @@ import { projectById } from './projects.js'
 export const links = {
   home: '#/',
   about: '#/about',
-  universe: '#/universe',
+  universe: '#/projects',
   contact: '#/contact',
 }
 
 export function parseHash(hash) {
   const [a, b] = hash.replace(/^#\/?/, '').split('/')
-  if (a === 'about' || a === 'universe' || a === 'contact') return { scene: a, projectId: null }
+  if (a === 'about' || a === 'contact') return { scene: a, projectId: null }
+  if (a === 'projects' || a === 'universe') return { scene: 'universe', projectId: null }
   if (a === 'project') {
     const id = decodeURIComponent(b ?? '')
     return projectById[id] ? { scene: 'project', projectId: id } : { scene: 'universe', projectId: null }

@@ -102,7 +102,7 @@ export default function App() {
 
 function titleFor(route) {
   if (route.scene === 'about') return 'About'
-  if (route.scene === 'universe') return 'Universe'
+  if (route.scene === 'universe') return 'Explore Projects'
   if (route.scene === 'contact') return 'Contact'
   return 'Project'
 }

@@ -4,7 +4,9 @@
 //   npm run media -- --force remakes everything
 //
 // Reads   Projects/<folder>/<file>          (the originals — never changed)
+//         AboutMe/…                         (portrait, icons, logo breakdown, for the About page)
 // Writes  public/media/<project-id>/…       (WebP at several widths, MP4 + poster)
+//         public/media/about/…              (the About page pieces)
 //         src/content/media.json            (sizes, so the page never jumps while loading)
 //
 // Images are only resized (never cropped, never enlarged) and saved as high-quality
@@ -19,6 +21,7 @@ import { PROJECTS } from '../src/content/projects.js'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const SRC = path.join(ROOT, 'Projects')
+const ABOUT_SRC = path.join(ROOT, 'AboutMe')
 const OUT = path.join(ROOT, 'public', 'media')
 const MANIFEST = path.join(ROOT, 'src', 'content', 'media.json')
 const FORCE = process.argv.includes('--force')
@@ -149,6 +152,25 @@ for (const project of PROJECTS) {
   }
 }
 
+// About page pieces: every image / video inside AboutMe/, keyed by its file name.
+if (fs.existsSync(ABOUT_SRC)) {
+  const dir = path.join(OUT, 'about')
+  fs.mkdirSync(dir, { recursive: true })
+  console.log('About page pieces')
+  const about = {}
+  const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)]))
+  for (const src of walk(ABOUT_SRC).sort(natural)) {
+    const file = path.basename(src)
+    if (!IMAGE_RE.test(file) && !VIDEO_RE.test(file)) continue
+    const key = file.replace(/.[^.]+$/, '')
+    const base = key.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+    const item = VIDEO_RE.test(file) ? await buildVideo(src, dir, base) : await buildImage(src, dir, base)
+    about[key] = { file, ...item }
+    for (const f of [item.src, item.poster, ...(item.variants ?? []).map((v) => v.src)]) if (f) expected.add(path.join(dir, f))
+  }
+  manifest.about = about
+}
+
 // Remove copies left over from files that were renamed, reordered or removed.
 if (fs.existsSync(OUT)) {
   for (const id of fs.readdirSync(OUT)) {
@@ -163,7 +185,7 @@ if (fs.existsSync(OUT)) {
 
 fs.writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2) + '\n')
 
-const total = Object.values(manifest).reduce((n, items) => n + items.length, 0)
+const total = PROJECTS.reduce((n, p) => n + (manifest[p.id]?.length ?? 0), 0)
 console.log(`\n${PROJECTS.length} projects, ${total} pieces → public/media`)
 if (problems.length) {
   console.log('\nNeeds a look:')

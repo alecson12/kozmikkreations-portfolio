@@ -7,3 +7,4 @@ dist
 # Original full-size artwork (827 MB, one video is over GitHub's 100 MB file limit).
 # The site uses the optimised copies in public/media, made by `npm run media`.
 /Projects/
+/AboutMe/

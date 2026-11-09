@@ -1,110 +1,4 @@
 {
-  "shaping-kozmik": [
-    {
-      "file": "ShapingKozmik_pg1.mp4",
-      "type": "video",
-      "w": 1080,
-      "h": 1080,
-      "src": "01.mp4",
-      "poster": "01-poster.webp"
-    },
-    {
-      "file": "ShapingKozmik_pg2.png",
-      "type": "image",
-      "w": 3000,
-      "h": 3000,
-      "variants": [
-        {
-          "w": 480,
-          "src": "02-480.webp"
-        },
-        {
-          "w": 960,
-          "src": "02-960.webp"
-        },
-        {
-          "w": 1600,
-          "src": "02-1600.webp"
-        },
-        {
-          "w": 2400,
-          "src": "02-2400.webp"
-        }
-      ]
-    },
-    {
-      "file": "ShapingKozmik_pg3.png",
-      "type": "image",
-      "w": 3000,
-      "h": 3000,
-      "variants": [
-        {
-          "w": 480,
-          "src": "03-480.webp"
-        },
-        {
-          "w": 960,
-          "src": "03-960.webp"
-        },
-        {
-          "w": 1600,
-          "src": "03-1600.webp"
-        },
-        {
-          "w": 2400,
-          "src": "03-2400.webp"
-        }
-      ]
-    },
-    {
-      "file": "ShapingKozmik_pg4.png",
-      "type": "image",
-      "w": 3000,
-      "h": 3000,
-      "variants": [
-        {
-          "w": 480,
-          "src": "04-480.webp"
-        },
-        {
-          "w": 960,
-          "src": "04-960.webp"
-        },
-        {
-          "w": 1600,
-          "src": "04-1600.webp"
-        },
-        {
-          "w": 2400,
-          "src": "04-2400.webp"
-        }
-      ]
-    },
-    {
-      "file": "ShapingKozmik_pg5.1.png",
-      "type": "image",
-      "w": 3000,
-      "h": 3000,
-      "variants": [
-        {
-          "w": 480,
-          "src": "05-480.webp"
-        },
-        {
-          "w": 960,
-          "src": "05-960.webp"
-        },
-        {
-          "w": 1600,
-          "src": "05-1600.webp"
-        },
-        {
-          "w": 2400,
-          "src": "05-2400.webp"
-        }
-      ]
-    }
-  ],
   "dna-collectives": [
     {
       "file": "DNA_Page1.png",
@@ -635,6 +529,210 @@
         {
           "w": 2400,
           "src": "08-2400.webp"
+        }
+      ]
+    }
+  ],
+  "the-clan-crew-shirt": [
+    {
+      "file": "TheClanShirt_Showcase_01.png",
+      "type": "image",
+      "w": 2160,
+      "h": 2700,
+      "variants": [
+        {
+          "w": 480,
+          "src": "01-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "01-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "01-1600.webp"
+        },
+        {
+          "w": 2160,
+          "src": "01-2160.webp"
+        }
+      ]
+    },
+    {
+      "file": "TheClanShirt_Showcase_02.png",
+      "type": "image",
+      "w": 2160,
+      "h": 2700,
+      "variants": [
+        {
+          "w": 480,
+          "src": "02-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "02-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "02-1600.webp"
+        },
+        {
+          "w": 2160,
+          "src": "02-2160.webp"
+        }
+      ]
+    },
+    {
+      "file": "TheClanShirt_Showcase_03.png",
+      "type": "image",
+      "w": 2160,
+      "h": 2700,
+      "variants": [
+        {
+          "w": 480,
+          "src": "03-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "03-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "03-1600.webp"
+        },
+        {
+          "w": 2160,
+          "src": "03-2160.webp"
+        }
+      ]
+    },
+    {
+      "file": "TheClanShirt_Showcase_04.png",
+      "type": "image",
+      "w": 2160,
+      "h": 2700,
+      "variants": [
+        {
+          "w": 480,
+          "src": "04-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "04-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "04-1600.webp"
+        },
+        {
+          "w": 2160,
+          "src": "04-2160.webp"
+        }
+      ]
+    },
+    {
+      "file": "TheClanShirt_Showcase_05.png",
+      "type": "image",
+      "w": 2160,
+      "h": 2700,
+      "variants": [
+        {
+          "w": 480,
+          "src": "05-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "05-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "05-1600.webp"
+        },
+        {
+          "w": 2160,
+          "src": "05-2160.webp"
+        }
+      ]
+    }
+  ],
+  "dna-x-the-clan-jersey": [
+    {
+      "file": "DNAxTheClan_JerseyShirt-(Carousel)_01.png",
+      "type": "image",
+      "w": 1080,
+      "h": 1350,
+      "variants": [
+        {
+          "w": 480,
+          "src": "01-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "01-960.webp"
+        },
+        {
+          "w": 1080,
+          "src": "01-1080.webp"
+        }
+      ]
+    },
+    {
+      "file": "DNAxTheClan_JerseyShirt-(Carousel)_02.png",
+      "type": "image",
+      "w": 1080,
+      "h": 1350,
+      "variants": [
+        {
+          "w": 480,
+          "src": "02-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "02-960.webp"
+        },
+        {
+          "w": 1080,
+          "src": "02-1080.webp"
+        }
+      ]
+    },
+    {
+      "file": "DNAxTheClan_JerseyShirt-(Carousel)_03.png",
+      "type": "image",
+      "w": 1080,
+      "h": 1350,
+      "variants": [
+        {
+          "w": 480,
+          "src": "03-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "03-960.webp"
+        },
+        {
+          "w": 1080,
+          "src": "03-1080.webp"
+        }
+      ]
+    },
+    {
+      "file": "DNAxTheClan_JerseyShirt-(Carousel)_04.png",
+      "type": "image",
+      "w": 1080,
+      "h": 1350,
+      "variants": [
+        {
+          "w": 480,
+          "src": "04-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "04-960.webp"
+        },
+        {
+          "w": 1080,
+          "src": "04-1080.webp"
         }
       ]
     }
@@ -1602,5 +1700,247 @@
         }
       ]
     }
-  ]
+  ],
+  "about": {
+    "AI Icon": {
+      "file": "AI Icon.png",
+      "type": "image",
+      "w": 226,
+      "h": 220,
+      "variants": [
+        {
+          "w": 226,
+          "src": "ai-icon-226.webp"
+        }
+      ]
+    },
+    "Canva Icon": {
+      "file": "Canva Icon.png",
+      "type": "image",
+      "w": 221,
+      "h": 215,
+      "variants": [
+        {
+          "w": 221,
+          "src": "canva-icon-221.webp"
+        }
+      ]
+    },
+    "goinKozmik_Blue": {
+      "file": "goinKozmik_Blue.png",
+      "type": "image",
+      "w": 2504,
+      "h": 3130,
+      "variants": [
+        {
+          "w": 480,
+          "src": "goinkozmik-blue-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "goinkozmik-blue-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "goinkozmik-blue-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "goinkozmik-blue-2400.webp"
+        }
+      ]
+    },
+    "Kosmaj photo": {
+      "file": "Kosmaj photo.png",
+      "type": "image",
+      "w": 468,
+      "h": 531,
+      "variants": [
+        {
+          "w": 468,
+          "src": "kosmaj-photo-468.webp"
+        }
+      ]
+    },
+    "The Kharacters": {
+      "file": "The Kharacters.png",
+      "type": "image",
+      "w": 594,
+      "h": 518,
+      "variants": [
+        {
+          "w": 480,
+          "src": "the-kharacters-480.webp"
+        },
+        {
+          "w": 594,
+          "src": "the-kharacters-594.webp"
+        }
+      ]
+    },
+    "The Kosmaj": {
+      "file": "The Kosmaj.png",
+      "type": "image",
+      "w": 595,
+      "h": 518,
+      "variants": [
+        {
+          "w": 480,
+          "src": "the-kosmaj-480.webp"
+        },
+        {
+          "w": 595,
+          "src": "the-kosmaj-595.webp"
+        }
+      ]
+    },
+    "The Kozmik": {
+      "file": "The Kozmik.png",
+      "type": "image",
+      "w": 595,
+      "h": 518,
+      "variants": [
+        {
+          "w": 480,
+          "src": "the-kozmik-480.webp"
+        },
+        {
+          "w": 595,
+          "src": "the-kozmik-595.webp"
+        }
+      ]
+    },
+    "The Kreation": {
+      "file": "The Kreation.png",
+      "type": "image",
+      "w": 594,
+      "h": 518,
+      "variants": [
+        {
+          "w": 480,
+          "src": "the-kreation-480.webp"
+        },
+        {
+          "w": 594,
+          "src": "the-kreation-594.webp"
+        }
+      ]
+    },
+    "PS Icon": {
+      "file": "PS Icon.png",
+      "type": "image",
+      "w": 227,
+      "h": 222,
+      "variants": [
+        {
+          "w": 227,
+          "src": "ps-icon-227.webp"
+        }
+      ]
+    },
+    "ShapingKozmik_pg1": {
+      "file": "ShapingKozmik_pg1.mp4",
+      "type": "video",
+      "w": 1080,
+      "h": 1080,
+      "src": "shapingkozmik-pg1.mp4",
+      "poster": "shapingkozmik-pg1-poster.webp"
+    },
+    "ShapingKozmik_pg2": {
+      "file": "ShapingKozmik_pg2.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "shapingkozmik-pg2-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "shapingkozmik-pg2-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "shapingkozmik-pg2-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "shapingkozmik-pg2-2400.webp"
+        }
+      ]
+    },
+    "ShapingKozmik_pg3": {
+      "file": "ShapingKozmik_pg3.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "shapingkozmik-pg3-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "shapingkozmik-pg3-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "shapingkozmik-pg3-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "shapingkozmik-pg3-2400.webp"
+        }
+      ]
+    },
+    "ShapingKozmik_pg4": {
+      "file": "ShapingKozmik_pg4.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "shapingkozmik-pg4-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "shapingkozmik-pg4-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "shapingkozmik-pg4-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "shapingkozmik-pg4-2400.webp"
+        }
+      ]
+    },
+    "ShapingKozmik_pg5.1": {
+      "file": "ShapingKozmik_pg5.1.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "shapingkozmik-pg5-1-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "shapingkozmik-pg5-1-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "shapingkozmik-pg5-1-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "shapingkozmik-pg5-1-2400.webp"
+        }
+      ]
+    }
+  }
 }

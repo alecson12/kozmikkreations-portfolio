@@ -138,7 +138,7 @@ export default function Universe({ phase }) {
       data-phase={phase}
       data-dragging={dragging}
       data-portrait={cosmos.portrait}
-      aria-label="Universe — every planet is a project"
+      aria-label="Explore projects — every planet is a project"
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}

@@ -29,6 +29,17 @@ export const projects = PROJECTS.map((p, index) => {
 })
 
 export const total = two(projects.length)
+
+// Pieces for the About page (AboutMe/ folder), looked up by file name without extension.
+export const aboutMedia = (name) => {
+  const m = media.about?.[name]
+  if (!m) return null
+  const url = (file) => asset(`media/about/${file}`)
+  const common = { file: m.file, type: m.type, w: m.w, h: m.h, aspect: m.w / m.h }
+  return m.type === 'video'
+    ? { ...common, src: url(m.src), poster: url(m.poster) }
+    : { ...common, variants: m.variants.map((v) => ({ w: v.w, src: url(v.src) })) }
+}
 export const projectById = Object.fromEntries(projects.map((p) => [p.id, p]))
 export const systems = SYSTEMS.map((s) => ({ ...s, projects: projects.filter((p) => p.system === s.id) })).filter(
   (s) => s.projects.length,

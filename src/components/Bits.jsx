@@ -3,18 +3,18 @@
 import { asset } from '../lib/projects.js'
 
 const MARK = asset('brand/kozmik-mark.png')
+const CHROME = asset('brand/kozmik-chrome.webp')
 const WORDMARK = asset('brand/kozmik-wordmark.png')
 
-// The Kozmik mark exactly as supplied; the PNG is used as a mask and filled with chrome.
+// The chrome Kozmik mark exactly as supplied (Kozmik_Chrome.png, resized for the web).
 export function Mark({ className = '', sheen = false, style }) {
   return (
-    <span
-      role="img"
-      aria-label="Kozmik Kreations"
-      className={`mark ${className}`}
-      data-sheen={sheen ? '' : undefined}
-      style={{ WebkitMaskImage: `url("${MARK}")`, maskImage: `url("${MARK}")`, ...style }}
-    />
+    <span className={`mark ${className}`} style={style}>
+      <img src={CHROME} alt="Kozmik Kreations" width="2262" height="1971" draggable="false" />
+      {sheen && (
+        <span className="mark-sheen" style={{ WebkitMaskImage: `url("${MARK}")`, maskImage: `url("${MARK}")` }} aria-hidden="true" />
+      )}
+    </span>
   )
 }
 
