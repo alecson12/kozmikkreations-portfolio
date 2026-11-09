@@ -64,7 +64,7 @@ export const SITE = {
     headline: 'Let’s create something out of this world.',
     // Set open to false to show the closed label instead.
     commissions: { open: true, openLabel: 'Open for commissions', closedLabel: 'Commissions closed' },
-    email: 'kozmikkreations.designer@gmail.com',
+    email: 'kozmikkreations.design@gmail.com',
     cta: 'Start a project',
     emailSubject: 'Project inquiry — Kozmik Kreations',
     links: [
