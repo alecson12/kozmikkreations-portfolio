@@ -1826,6 +1826,150 @@
         }
       ]
     },
+    "KozmikIcon_ArtChrome": {
+      "file": "KozmikIcon_ArtChrome.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "kozmikicon-artchrome-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "kozmikicon-artchrome-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "kozmikicon-artchrome-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "kozmikicon-artchrome-2400.webp"
+        }
+      ]
+    },
+    "KozmikIcon_Bigbang": {
+      "file": "KozmikIcon_Bigbang.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "kozmikicon-bigbang-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "kozmikicon-bigbang-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "kozmikicon-bigbang-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "kozmikicon-bigbang-2400.webp"
+        }
+      ]
+    },
+    "KozmikIcon_Crimson": {
+      "file": "KozmikIcon_Crimson.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "kozmikicon-crimson-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "kozmikicon-crimson-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "kozmikicon-crimson-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "kozmikicon-crimson-2400.webp"
+        }
+      ]
+    },
+    "KozmikIcon_Halftone": {
+      "file": "KozmikIcon_Halftone.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "kozmikicon-halftone-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "kozmikicon-halftone-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "kozmikicon-halftone-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "kozmikicon-halftone-2400.webp"
+        }
+      ]
+    },
+    "KozmikIcon_Illustrator": {
+      "file": "KozmikIcon_Illustrator.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "kozmikicon-illustrator-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "kozmikicon-illustrator-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "kozmikicon-illustrator-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "kozmikicon-illustrator-2400.webp"
+        }
+      ]
+    },
+    "KozmikIcon_Sketch": {
+      "file": "KozmikIcon_Sketch.png",
+      "type": "image",
+      "w": 3000,
+      "h": 3000,
+      "variants": [
+        {
+          "w": 480,
+          "src": "kozmikicon-sketch-480.webp"
+        },
+        {
+          "w": 960,
+          "src": "kozmikicon-sketch-960.webp"
+        },
+        {
+          "w": 1600,
+          "src": "kozmikicon-sketch-1600.webp"
+        },
+        {
+          "w": 2400,
+          "src": "kozmikicon-sketch-2400.webp"
+        }
+      ]
+    },
     "PS Icon": {
       "file": "PS Icon.png",
       "type": "image",

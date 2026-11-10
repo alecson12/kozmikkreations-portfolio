@@ -7,9 +7,12 @@ export const SITE = {
   brand: 'Kozmik Kreations',
   tabTitle: 'Kozmik Kreations — Graphic Design Portfolio',
 
+  // The names of the four pages, as shown in the navigation.
+  nav: { home: 'Home', about: 'Behind Kozmik', universe: 'My Kreations', contact: 'Kontact Me' },
+
   home: {
-    headline: 'Creativity beyond the ordinary.',
-    text: 'Exploring ideas, crafting visuals, and bringing creative visions to life.',
+    headline: 'Kreativity',
+    text: 'Welcome to my creative universe. This is where ideas take shape, creativity has no limits, and every kreation tells a story. Come explore the mind, craft, and work behind Kozmik.',
     cta: 'Explore Projects',
   },
 
@@ -21,6 +24,7 @@ export const SITE = {
     // The "galactic ID" card, as on the Behind Kozmik slide. Pictures are files in AboutMe/.
     portrait: 'goinKozmik_Blue',
     id: {
+      document: 'Kreator Identification',
       experience: { label: 'Experience', value: '4', unit: 'yrs' },
       specs: [
         { label: 'Species', value: 'Human' },
@@ -28,8 +32,10 @@ export const SITE = {
         { label: 'Classification', value: 'The Kreator' },
         { label: 'Alias', value: '‘Crimzon’ & ‘Jr Tsubaki’' },
         { label: 'Occupations', value: 'Designer, Developer, Artist' },
+        { label: 'Affiliation', value: 'Kozmik Kreations' },
       ],
       number: { label: 'Galactic ID No', value: 'KK-121200' },
+      status: { label: 'Status' }, // shows the commissions label from the contact block below
       valid: { label: 'Valid until', value: '∞' },
     },
     bioTitle: 'About the Kreator',
@@ -52,9 +58,17 @@ export const SITE = {
       { name: 'Illustrator', icon: 'AI Icon' },
       { name: 'Canva', icon: 'Canva Icon' },
     ],
-    contactsTitle: 'Contacts',
     markTitle: 'Logo breakdown',
-    markVideo: 'ShapingKozmik_pg1', // the final logo animation
+    // The logo icon versions shown one after another (files in AboutMe/LogoIcon), in this order.
+    markStages: [
+      { image: 'KozmikIcon_Sketch', label: 'Sketch' },
+      { image: 'KozmikIcon_Illustrator', label: 'Illustrator' },
+      { image: 'KozmikIcon_Halftone', label: 'Halftone' },
+      { image: 'KozmikIcon_Crimson', label: 'Crimson' },
+      { image: 'KozmikIcon_Bigbang', label: 'Big Bang' },
+      { image: 'KozmikIcon_ArtChrome', label: 'Art Chrome' },
+    ],
+    markSeconds: 3.5, // how long each version stays
     mark: [
       {
         title: 'The Kozmik',

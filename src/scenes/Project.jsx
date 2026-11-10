@@ -3,6 +3,7 @@ import { Arrow, Chevron } from '../components/Bits.jsx'
 import Carousel from '../components/Carousel.jsx'
 import Gallery from '../components/Gallery.jsx'
 import Lightbox from '../components/Lightbox.jsx'
+import { SITE } from '../content/site.js'
 import { go, links } from '../lib/router.js'
 import { neighbours, projectById, total } from '../lib/projects.js'
 
@@ -30,25 +31,25 @@ export default function Project({ projectId, phase }) {
       className="rise grid flex-none grid-cols-[auto_auto] items-center justify-between gap-x-3 gap-y-4 px-5 pb-4 sm:grid-cols-[1fr_auto_1fr] sm:gap-x-6 sm:px-8 lg:px-12"
       style={{ '--d': '60ms' }}
     >
-      <a href={links.universe} aria-label="Back to Explore Projects" className="btn min-h-11 justify-self-start px-4 text-[10px] sm:px-6">
+      <a href={links.universe} aria-label={`Back to ${SITE.nav.universe}`} className="btn min-h-11 justify-self-start gap-2 px-3 text-[10px] tracking-[0.1em] sm:gap-[0.9em] sm:px-6 sm:tracking-[0.26em]">
         <Arrow dir="left" size={14} className="order-first" />
-        <span><span className="hidden sm:inline">Explore </span>Projects</span>
+        <span>{SITE.nav.universe}</span>
       </a>
       <div className="order-last col-span-2 min-w-0 text-center sm:order-none sm:col-span-1">
         <p className="eyebrow truncate">{project.kind}</p>
         <h1 className="display chrome-text mt-2.5 text-balance text-[clamp(17px,2.5vw,30px)]">{project.title}</h1>
       </div>
-      <nav aria-label="Change project" className="flex items-center gap-2.5 justify-self-end sm:gap-3">
-        <a href={prev.href} className="icon-btn" aria-label={`Previous project: ${prev.title}`} title={`Previous project: ${prev.title}`}>
+      <nav aria-label="Change project" className="flex items-center gap-1.5 justify-self-end sm:gap-3">
+        <a href={prev.href} className="icon-btn max-sm:h-10 max-sm:w-10" aria-label={`Previous project: ${prev.title}`} title={`Previous project: ${prev.title}`}>
           <Chevron dir="left" />
         </a>
-        <p className="label text-center text-[9px] leading-[1.7] text-mute sm:text-[10px]">
+        <p className="label text-center text-[9px] leading-[1.7] tracking-[0.18em] text-mute sm:text-[10px] sm:tracking-[0.26em]">
           Project
           <span className="block text-ink">
             {project.number} / {total}
           </span>
         </p>
-        <a href={next.href} className="icon-btn" aria-label={`Next project: ${next.title}`} title={`Next project: ${next.title}`}>
+        <a href={next.href} className="icon-btn max-sm:h-10 max-sm:w-10" aria-label={`Next project: ${next.title}`} title={`Next project: ${next.title}`}>
           <Chevron />
         </a>
       </nav>

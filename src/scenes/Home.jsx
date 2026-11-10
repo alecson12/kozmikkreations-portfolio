@@ -2,7 +2,7 @@ import { Arrow, Mark } from '../components/Bits.jsx'
 import { SITE } from '../content/site.js'
 import { links } from '../lib/router.js'
 
-// The cosmic introduction: the mark, one line, one way in.
+// The cosmic introduction: the mark, one word, a welcome, one way in.
 export default function Home({ phase, intro }) {
   const { headline, text, cta } = SITE.home
   // On the very first load the mark condenses first and the words follow;
@@ -12,17 +12,17 @@ export default function Home({ phase, intro }) {
     <section className="scene flex items-center justify-center" data-phase={phase} aria-label="Home">
       <div
         className="flex w-full max-w-[1100px] flex-col items-center px-6 text-center"
-        style={{ paddingTop: 'var(--nav-h)', paddingBottom: 'clamp(110px, 21vh, 240px)' }}
+        style={{ paddingTop: 'var(--nav-h)', paddingBottom: 'clamp(64px, 21vh, 240px)' }}
       >
-        <Mark sheen className={`w-[clamp(84px,10.5vw,148px)] ${intro ? 'mark-intro' : 'rise'}`} />
+        <Mark sheen className={`w-[clamp(84px,10.5vw,148px)] [@media(max-height:480px)]:hidden ${intro ? 'mark-intro' : 'rise'}`} />
         <h1
-          className="display chrome-text rise mt-[clamp(26px,4.5vh,48px)] max-w-[11.5em] text-balance text-[clamp(25px,7.6vw,38px)] md:max-w-[18.5em] md:text-[clamp(34px,3.85vw,58px)]"
+          className="display chrome-text rise mt-[clamp(20px,3.6vh,40px)] whitespace-nowrap text-[clamp(30px,min(8.3vw,14vh),108px)] tracking-[0.06em]"
           style={{ '--i': 1, '--d': d }}
         >
           {headline}
         </h1>
         <p
-          className="rise mt-[clamp(14px,2.4vh,24px)] max-w-[30em] text-pretty text-[clamp(14px,1.25vw,18px)] leading-relaxed text-mute"
+          className="rise mt-[clamp(14px,2.4vh,24px)] max-w-[34em] text-pretty text-[clamp(14px,1.2vw,17px)] leading-relaxed text-mute"
           style={{ '--i': 2, '--d': d }}
         >
           {text}

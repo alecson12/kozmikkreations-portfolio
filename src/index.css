@@ -211,13 +211,14 @@
   .btn-chrome {
     color: #070b18;
     border-color: rgb(255 255 255 / 0.7);
-    background: linear-gradient(180deg, #f0eff2 0%, #d9d6dc 30%, #8a8a9c 44%, #ecebf4 56%, #b9b5c2 76%, #d6dddd 100%);
+    /* the steel bands sit along the top and bottom edges; the middle, behind the words, stays clean */
+    background: linear-gradient(180deg, #f6f5f8 0%, #d6d3da 7%, #8b8b9d 15%, #cfccd5 23%, #eeedf3 33%, #f1f0f5 67%, #d2cfd8 77%, #8d8c9d 86%, #c6cccd 94%, #e8eaeb 100%);
     box-shadow:
       0 0 0 1px rgb(255 255 255 / 0.08),
       0 18px 50px -18px rgb(110 160 255 / 0.55);
   }
   .btn-chrome:hover {
-    background: linear-gradient(180deg, #ffffff 0%, #e6e4e9 30%, #a3a3b4 44%, #f7f6fb 56%, #cfccd6 76%, #e9eeee 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #e4e2e8 7%, #a2a2b3 15%, #dedce4 23%, #fbfafd 33%, #fbfafd 67%, #e0dee6 77%, #a4a3b3 86%, #d8dddd 94%, #f4f5f6 100%);
     border-color: #fff;
   }
   .btn-chrome::after {
@@ -275,9 +276,24 @@
     transform-origin: left;
     transition: transform 0.4s var(--ease-glide);
   }
-  .text-link:hover::after,
-  .text-link[aria-current='page']::after {
+  .text-link:hover::after {
     transform: scaleX(1);
+  }
+  /* the page you are on: a small sparkle beside its name */
+  .nav-star {
+    position: absolute;
+    right: calc(100% + 9px);
+    top: 50%;
+    color: var(--color-chrome);
+    opacity: 0;
+    transform: translateY(-50%) scale(0.3) rotate(-90deg);
+    transition:
+      opacity 0.45s var(--ease-glide),
+      transform 0.6s var(--ease-glide);
+  }
+  [aria-current='page'] > .nav-star {
+    opacity: 1;
+    transform: translateY(-50%) scale(1) rotate(0deg);
   }
 
   .panel {
@@ -532,5 +548,179 @@
     border: 1px solid rgb(201 214 242 / 0.35);
     background: rgb(5 8 18 / 0.85);
     backdrop-filter: blur(6px);
+  }
+}
+
+/* ── Behind Kozmik: identity card details, software tiles, logo presentation ─ */
+@layer components {
+  /* a chrome edge along the top of the identity card, like the foil strip on a real one */
+  .id-doc::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -1px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #e9e8ee 18%, #8b8b9d 50%, #e9e8ee 82%, transparent);
+    opacity: 0.75;
+  }
+  .id-watermark {
+    position: absolute;
+    right: -2%;
+    top: 50%;
+    width: min(46%, 300px);
+    transform: translateY(-50%);
+    opacity: 0.055;
+    filter: none;
+    pointer-events: none;
+  }
+  .id-row {
+    display: grid;
+    grid-template-columns: 8.2rem minmax(0, 1fr);
+    align-items: baseline;
+    gap: 0.75rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgb(201 214 242 / 0.09);
+  }
+  .id-row:first-child {
+    border-top: 1px solid rgb(201 214 242 / 0.09);
+  }
+  @media (min-width: 640px) {
+    .id-row {
+      grid-template-columns: 10.5rem minmax(0, 1fr);
+      padding: 0.62rem 0;
+    }
+  }
+  .id-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border: 1px solid var(--color-line);
+    background: rgb(4 7 16 / 0.5);
+  }
+  .id-stats > div {
+    padding: 0.85rem 1rem;
+    min-width: 0;
+  }
+  .id-stats > div + div {
+    border-left: 1px solid var(--color-line);
+  }
+  @media (max-width: 479px) {
+    .id-stats {
+      grid-template-columns: 1fr 1fr;
+    }
+    .id-stats > div:nth-child(2) {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      border-left: 0;
+      border-top: 1px solid var(--color-line);
+    }
+    .id-stats > div:nth-child(3) {
+      border-left: 1px solid var(--color-line);
+    }
+  }
+
+  .software-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+  .software-grid > li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    padding: 1.4rem 0.5rem 1.2rem;
+    border: 1px solid rgb(201 214 242 / 0.1);
+    background: rgb(4 7 16 / 0.42);
+    text-align: center;
+  }
+  .software-icon {
+    width: clamp(58px, 62%, 104px);
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+  }
+
+  .logo-stage-view {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: clamp(300px, 66vh, 640px);
+    overflow: hidden;
+    background: #04060d;
+    cursor: pointer;
+  }
+  @media (max-width: 700px) {
+    .logo-stage-view {
+      height: auto;
+      aspect-ratio: 1;
+    }
+  }
+  .logo-stage-glow,
+  .logo-stage-art {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+  }
+  .logo-stage-glow {
+    inset: -12%;
+    width: 124%;
+    height: 124%;
+    max-width: none;
+    object-fit: cover;
+    filter: blur(46px) brightness(0.3) saturate(1.15);
+  }
+  .logo-stage-art {
+    inset: 0;
+    margin: auto;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+    transition:
+      opacity 0.9s ease,
+      transform 0.7s var(--ease-glide);
+  }
+  .logo-stage-glow[data-on='true'],
+  .logo-stage-art[data-on='true'] {
+    opacity: 1;
+  }
+  .logo-stage-hint {
+    position: absolute;
+    right: 18px;
+    top: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    padding: 7px 12px;
+    font-size: 9px;
+    color: var(--color-ink);
+    border: 1px solid var(--color-line-strong);
+    background: rgb(3 4 10 / 0.6);
+    opacity: 0.55;
+    transition: opacity 0.35s;
+  }
+  @media (hover: hover) {
+    .logo-stage-view:hover .logo-stage-art {
+      transform: scale(1.012);
+    }
+    .logo-stage-view:hover .logo-stage-hint {
+      opacity: 1;
+    }
+  }
+  .logo-stage-view:active .logo-stage-art {
+    transform: scale(0.994);
+  }
+  .logo-stage-pip {
+    height: 2px;
+    flex: 1 1 0;
+    max-width: 34px;
+    background: rgb(201 214 242 / 0.22);
+    transition: background-color 0.5s;
+  }
+  .logo-stage-pip[data-on='true'] {
+    background: #eef2fb;
   }
 }

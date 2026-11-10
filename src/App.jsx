@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import Nav from './components/Nav.jsx'
 import { DirectorContext } from './cosmos/context.js'
 import { createDirector } from './cosmos/director.js'
+import { SITE } from './content/site.js'
 import { routeKey, useRoute } from './lib/router.js'
 import About from './scenes/About.jsx'
 import Contact from './scenes/Contact.jsx'
@@ -101,8 +102,8 @@ export default function App() {
 }
 
 function titleFor(route) {
-  if (route.scene === 'about') return 'About'
-  if (route.scene === 'universe') return 'Explore Projects'
-  if (route.scene === 'contact') return 'Contact'
+  if (route.scene === 'about') return SITE.nav.about
+  if (route.scene === 'universe') return SITE.nav.universe
+  if (route.scene === 'contact') return SITE.nav.contact
   return 'Project'
 }

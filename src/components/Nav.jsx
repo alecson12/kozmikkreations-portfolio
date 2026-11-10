@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
+import { SITE } from '../content/site.js'
 import { links } from '../lib/router.js'
-import { Mark, Wordmark } from './Bits.jsx'
+import { Mark, Sparkle, Wordmark } from './Bits.jsx'
 
 const ITEMS = [
-  { id: 'home', label: 'Home', href: links.home },
-  { id: 'about', label: 'About', href: links.about },
-  { id: 'universe', label: 'Explore Projects', href: links.universe },
-  { id: 'contact', label: 'Contact', href: links.contact },
+  { id: 'home', label: SITE.nav.home, href: links.home },
+  { id: 'about', label: SITE.nav.about, href: links.about },
+  { id: 'universe', label: SITE.nav.universe, href: links.universe },
+  { id: 'contact', label: SITE.nav.contact, href: links.contact },
 ]
 
 export default function Nav({ route }) {
@@ -31,11 +32,11 @@ export default function Nav({ route }) {
         <div className="pointer-events-auto flex items-center gap-5 sm:gap-7">
           <a href={links.home} aria-label="Kozmik Kreations — home" className="flex items-center gap-3">
             <Mark className="w-7 sm:w-8" />
-            <Wordmark className="hidden h-[22px] w-auto opacity-95 sm:block" />
+            <Wordmark className="hidden h-[22px] w-auto opacity-95 sm:block md:hidden lg:block" />
           </a>
         </div>
 
-        <nav aria-label="Main" className="pointer-events-auto hidden items-center gap-9 md:flex">
+        <nav aria-label="Main" className="pointer-events-auto hidden items-center gap-8 md:flex lg:gap-10">
           {ITEMS.map((item) => (
             <a
               key={item.id}
@@ -43,6 +44,7 @@ export default function Nav({ route }) {
               aria-current={current === item.id ? 'page' : undefined}
               className="label text-link"
             >
+              <Sparkle size={9} className="nav-star" />
               {item.label}
             </a>
           ))}
@@ -86,6 +88,7 @@ export default function Nav({ route }) {
             >
               <span className="label w-6 text-cosmic">0{i + 1}</span>
               <span className={current === item.id ? 'chrome-text' : ''}>{item.label}</span>
+              {current === item.id && <Sparkle size={13} className="self-center text-chrome" />}
             </a>
           ))}
         </nav>
