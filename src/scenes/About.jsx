@@ -87,17 +87,10 @@ export default function About({ phase }) {
             </p>
           </header>
 
-          <div className="grid gap-x-10 gap-y-7 p-5 sm:grid-cols-[minmax(200px,0.55fr)_minmax(0,1fr)] sm:p-8 lg:grid-cols-[330px_minmax(0,1fr)]">
-            <div className="mx-auto flex w-full max-w-[330px] flex-col gap-3 sm:mx-0">
-              <div className="id-photo">
-                {portrait && <Picture item={portrait} alt={a.name} eager sizes="330px" className="block h-full w-full object-cover" />}
-              </div>
-              {signature && (
-                <div className="id-sign">
-                  <span className="label text-[8px] text-mute">{a.id.signature.label}</span>
-                  <Picture item={signature} alt={`Signature of ${a.name}`} sizes="140px" className="id-sign-ink" />
-                </div>
-              )}
+          <div className="grid gap-x-10 gap-y-7 p-5 sm:grid-cols-[minmax(220px,0.7fr)_minmax(0,1fr)] sm:p-8 lg:grid-cols-[400px_minmax(0,1fr)]">
+            <div className="id-photo relative mx-auto w-full max-w-[400px] sm:mx-0">
+                {portrait && <Picture item={portrait} alt={a.name} eager sizes="400px" className="block h-full w-full object-cover" />}
+              {signature && <Picture item={signature} alt={`Signature of ${a.name}`} sizes="160px" className="id-sign-ink" />}
             </div>
 
             <div className="relative flex min-w-0 flex-col justify-center">
@@ -105,7 +98,7 @@ export default function About({ phase }) {
               <p className="eyebrow relative flex items-center gap-2.5">
                 <Sparkle size={10} /> {a.eyebrow}
               </p>
-              <h1 className="display chrome-text relative mt-3 text-[clamp(22px,3.3vw,42px)]">{a.name}</h1>
+              <h1 className="display chrome-text relative mt-3 text-[clamp(22px,3vw,38px)]">{a.name}</h1>
 
               <dl className="relative mt-5 lg:mt-6">
                 {a.id.specs.map((s) => (

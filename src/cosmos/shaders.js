@@ -249,9 +249,11 @@ float fbmL(vec3 p, int oct, float k) {
 }
 
 // Nearest random point in a 3D grid, used for craters: xyz = direction to it, w = distance.
+float gW2 = 8.0;
 vec4 worley(vec3 p) {
   vec3 i = floor(p), f = fract(p);
   float d = 8.0;
+  float d2 = 8.0;
   vec3 v = vec3(0.0);
   for (int x = -1; x <= 1; x++)
     for (int y = -1; y <= 1; y++)
@@ -259,9 +261,11 @@ vec4 worley(vec3 p) {
         vec3 g = vec3(float(x), float(y), float(z));
         vec3 r = g + hash33(i + g) - f;
         float dd = dot(r, r);
-        if (dd < d) { d = dd; v = r; }
+        if (dd < d) { d2 = d; d = dd; v = r; }
+        else if (dd < d2) { d2 = dd; }
       }
   d = sqrt(d);
+  gW2 = sqrt(d2);
   return vec4(v / max(d, 1e-4), d);
 }
 
@@ -349,9 +353,10 @@ Surface rockSurface(vec3 s) {
   float broad = fbmL(p, 3, k);
   vec4 cw = worley(s * 3.4 * uDetail + uSeed * 0.7);
   float w = cw.w;
-  float bowl = smoothstep(0.38, 0.16, w);
-  float wall = smoothstep(0.08, 0.30, w) * smoothstep(0.42, 0.34, w);
-  float lip = smoothstep(0.34, 0.40, w) * smoothstep(0.54, 0.42, w);
+  float whole = smoothstep(0.03, 0.30, gW2 - w); // 0 at the border between two craters
+  float bowl = smoothstep(0.38, 0.16, w) * whole;
+  float wall = smoothstep(0.08, 0.30, w) * smoothstep(0.42, 0.34, w) * whole;
+  float lip = smoothstep(0.34, 0.40, w) * smoothstep(0.54, 0.42, w) * whole;
   float t = h * 0.68 + h2 * 0.32;
   vec3 c = mix(uC0, uC1, smoothstep(0.30, 0.62, t));
   c = mix(c, uC2, smoothstep(0.60, 0.86, t) * 0.8);
@@ -448,7 +453,7 @@ void main() {
   float alpha = 0.0;
 
   // Soft glow of the atmosphere outside the disc, stronger on the sunlit side.
-  if (r > 1.0 - aa) {
+  if (r > 1.0 - aa * 3.0) {
     float d = max(r - 1.0, 0.0);
     float side = smoothstep(-0.75, 0.55, dot(vec3(p / max(r, 0.0001), 0.0), L));
     float halo = exp(-d * 11.0 * uHaze) * 0.55 + exp(-d * 3.2 * uHaze) * 0.10;
@@ -486,7 +491,7 @@ void main() {
     vec3 sc = s;
     s.xz = rot(uSpin) * s.xz;
     sc.xz = rot(uSpin * 1.35 + 1.0) * sc.xz;
-    gFoot = max(length(dFdx(s)), length(dFdy(s)));
+    gFoot = (1.0 / uRadius) / max(z, 0.03);
 
     Surface S;
     if (uType == 0) S = chromeSurface(s, n);
@@ -538,6 +543,10 @@ void main() {
     // gentle highlight roll-off so bright clouds and rims never burn out to flat white
     lit = 1.0 - exp(-max(lit, 0.0) * 1.35);
     vec3 surf = pow(lit, vec3(1.0 / 2.2));
+    float sideIn = smoothstep(-0.75, 0.55, dot(vec3(p / max(r, 0.0001), 0.0), L));
+    vec3 haloEdge = uAtmo * 0.65 * (0.12 + 0.88 * sideIn) * uGlow;
+    float melt = min(9.0 / uRadius, 0.006) * step(0.01, uGlow);
+    surf = mix(surf, haloEdge, smoothstep(1.0 - melt, 1.0, r));
     float edge = smoothstep(1.0, 1.0 - aa * 2.0, r);
     col = mix(col, surf, edge);
     alpha = edge;
