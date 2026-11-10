@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Arrow } from '../components/Bits.jsx'
+import { Arrow, Chevron } from '../components/Bits.jsx'
 import Carousel from '../components/Carousel.jsx'
 import Gallery from '../components/Gallery.jsx'
 import Lightbox from '../components/Lightbox.jsx'
@@ -24,18 +24,34 @@ export default function Project({ projectId, phase }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [zoomed])
 
+  // back button · centred title · project switcher (labelled, so it is not mistaken for the slide arrows)
   const header = (
-    <div className="rise flex flex-none flex-col items-start gap-4 px-5 pb-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6 sm:px-8 lg:px-12" style={{ '--d': '60ms' }}>
-      <a href={links.universe} className="btn min-h-11 flex-none px-4 text-[10px] sm:px-6">
+    <div
+      className="rise grid flex-none grid-cols-[auto_auto] items-center justify-between gap-x-3 gap-y-4 px-5 pb-4 sm:grid-cols-[1fr_auto_1fr] sm:gap-x-6 sm:px-8 lg:px-12"
+      style={{ '--d': '60ms' }}
+    >
+      <a href={links.universe} aria-label="Back to Explore Projects" className="btn min-h-11 justify-self-start px-4 text-[10px] sm:px-6">
         <Arrow dir="left" size={14} className="order-first" />
-        <span>Explore Projects</span>
+        <span><span className="hidden sm:inline">Explore </span>Projects</span>
       </a>
-      <div className="min-w-0 self-end text-right sm:self-auto">
-        <p className="eyebrow truncate">
-          {project.kind} <span className="mx-2 text-faint">·</span> {project.number} / {total}
-        </p>
+      <div className="order-last col-span-2 min-w-0 text-center sm:order-none sm:col-span-1">
+        <p className="eyebrow truncate">{project.kind}</p>
         <h1 className="display chrome-text mt-2.5 text-balance text-[clamp(17px,2.5vw,30px)]">{project.title}</h1>
       </div>
+      <nav aria-label="Change project" className="flex items-center gap-2.5 justify-self-end sm:gap-3">
+        <a href={prev.href} className="icon-btn" aria-label={`Previous project: ${prev.title}`} title={`Previous project: ${prev.title}`}>
+          <Chevron dir="left" />
+        </a>
+        <p className="label text-center text-[9px] leading-[1.7] text-mute sm:text-[10px]">
+          Project
+          <span className="block text-ink">
+            {project.number} / {total}
+          </span>
+        </p>
+        <a href={next.href} className="icon-btn" aria-label={`Next project: ${next.title}`} title={`Next project: ${next.title}`}>
+          <Chevron />
+        </a>
+      </nav>
     </div>
   )
 
