@@ -223,7 +223,7 @@ export default function Universe({ phase }) {
       </div>
 
       <p
-        className="label pointer-events-none absolute bottom-9 left-12 hidden text-[10px] leading-relaxed text-faint transition-opacity duration-700 xl:block"
+        className="label pointer-events-none absolute bottom-9 left-12 hidden text-[10px] leading-relaxed text-faint transition-opacity duration-700 min-[1440px]:block"
         style={{ opacity: hinted ? 0 : 1 }}
         aria-hidden="true"
       >

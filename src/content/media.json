@@ -1714,6 +1714,22 @@
         }
       ]
     },
+    "Alecson Signature": {
+      "file": "Alecson Signature.png",
+      "type": "image",
+      "w": 488,
+      "h": 387,
+      "variants": [
+        {
+          "w": 480,
+          "src": "alecson-signature-480.webp"
+        },
+        {
+          "w": 488,
+          "src": "alecson-signature-488.webp"
+        }
+      ]
+    },
     "Canva Icon": {
       "file": "Canva Icon.png",
       "type": "image",

@@ -2,7 +2,7 @@ import { Arrow, Mark } from '../components/Bits.jsx'
 import { SITE } from '../content/site.js'
 import { links } from '../lib/router.js'
 
-// The cosmic introduction: the mark, one word, a welcome, one way in.
+// The cosmic introduction: the mark, one line, a welcome, one way in.
 export default function Home({ phase, intro }) {
   const { headline, text, cta } = SITE.home
   // On the very first load the mark condenses first and the words follow;
@@ -16,7 +16,7 @@ export default function Home({ phase, intro }) {
       >
         <Mark sheen className={`w-[clamp(84px,10.5vw,148px)] [@media(max-height:480px)]:hidden ${intro ? 'mark-intro' : 'rise'}`} />
         <h1
-          className="display chrome-text rise mt-[clamp(20px,3.6vh,40px)] whitespace-nowrap text-[clamp(30px,min(8.3vw,14vh),108px)] tracking-[0.06em]"
+          className="display chrome-text rise mt-[clamp(20px,4.2vh,48px)] max-w-[11.5em] text-balance text-[clamp(25px,7.6vw,38px)] md:max-w-[18.5em] md:text-[clamp(34px,3.85vw,58px)]"
           style={{ '--i': 1, '--d': d }}
         >
           {headline}

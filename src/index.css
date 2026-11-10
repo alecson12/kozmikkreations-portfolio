@@ -211,14 +211,18 @@
   .btn-chrome {
     color: #070b18;
     border-color: rgb(255 255 255 / 0.7);
-    /* the steel bands sit along the top and bottom edges; the middle, behind the words, stays clean */
-    background: linear-gradient(180deg, #f6f5f8 0%, #d6d3da 7%, #8b8b9d 15%, #cfccd5 23%, #eeedf3 33%, #f1f0f5 67%, #d2cfd8 77%, #8d8c9d 86%, #c6cccd 94%, #e8eaeb 100%);
+    /* natural chrome: a bright sky falling to a horizon line below the words, then a lit floor.
+       Nothing darker than a pale steel sits behind the words. */
+    background: linear-gradient(180deg, #ffffff 0%, #f1f1f5 18%, #dedee6 46%, #c9c9d4 60%, #a9a9ba 70%, #f6f6fa 73%, #e6e6ec 86%, #c8c8d3 100%);
+    text-shadow: 0 1px 0 rgb(255 255 255 / 0.65);
     box-shadow:
+      inset 0 1px 0 #fff,
+      inset 0 -1px 0 rgb(40 42 60 / 0.35),
       0 0 0 1px rgb(255 255 255 / 0.08),
       0 18px 50px -18px rgb(110 160 255 / 0.55);
   }
   .btn-chrome:hover {
-    background: linear-gradient(180deg, #ffffff 0%, #e4e2e8 7%, #a2a2b3 15%, #dedce4 23%, #fbfafd 33%, #fbfafd 67%, #e0dee6 77%, #a4a3b3 86%, #d8dddd 94%, #f4f5f6 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #f8f8fb 18%, #e8e8ee 46%, #d6d6df 60%, #b9b9c8 70%, #fcfcfe 73%, #efeff4 86%, #d6d6df 100%);
     border-color: #fff;
   }
   .btn-chrome::after {
@@ -276,7 +280,8 @@
     transform-origin: left;
     transition: transform 0.4s var(--ease-glide);
   }
-  .text-link:hover::after {
+  .text-link:hover::after,
+  .text-link[aria-current='page']::after {
     transform: scaleX(1);
   }
   /* the page you are on: a small sparkle beside its name */
@@ -604,21 +609,6 @@
   .id-stats > div + div {
     border-left: 1px solid var(--color-line);
   }
-  @media (max-width: 479px) {
-    .id-stats {
-      grid-template-columns: 1fr 1fr;
-    }
-    .id-stats > div:nth-child(2) {
-      grid-column: 1 / -1;
-      grid-row: 2;
-      border-left: 0;
-      border-top: 1px solid var(--color-line);
-    }
-    .id-stats > div:nth-child(3) {
-      border-left: 1px solid var(--color-line);
-    }
-  }
-
   .software-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -657,19 +647,10 @@
       aspect-ratio: 1;
     }
   }
-  .logo-stage-glow,
   .logo-stage-art {
     position: absolute;
     opacity: 0;
     transition: opacity 0.9s ease;
-  }
-  .logo-stage-glow {
-    inset: -12%;
-    width: 124%;
-    height: 124%;
-    max-width: none;
-    object-fit: cover;
-    filter: blur(46px) brightness(0.3) saturate(1.15);
   }
   .logo-stage-art {
     inset: 0;
@@ -683,31 +664,12 @@
       opacity 0.9s ease,
       transform 0.7s var(--ease-glide);
   }
-  .logo-stage-glow[data-on='true'],
   .logo-stage-art[data-on='true'] {
     opacity: 1;
-  }
-  .logo-stage-hint {
-    position: absolute;
-    right: 18px;
-    top: 16px;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6em;
-    padding: 7px 12px;
-    font-size: 9px;
-    color: var(--color-ink);
-    border: 1px solid var(--color-line-strong);
-    background: rgb(3 4 10 / 0.6);
-    opacity: 0.55;
-    transition: opacity 0.35s;
   }
   @media (hover: hover) {
     .logo-stage-view:hover .logo-stage-art {
       transform: scale(1.012);
-    }
-    .logo-stage-view:hover .logo-stage-hint {
-      opacity: 1;
     }
   }
   .logo-stage-view:active .logo-stage-art {
@@ -722,5 +684,213 @@
   }
   .logo-stage-pip[data-on='true'] {
     background: #eef2fb;
+  }
+}
+
+/* ── Round 4: shooting stars, signature, logo block, software names, photo link ─ */
+@custom-variant wide (@media (min-width: 1024px) and (orientation: landscape));
+
+@layer components {
+  .shooting-star {
+    position: absolute;
+    height: 1px;
+    border-radius: 1px;
+    background: linear-gradient(90deg, transparent, rgb(214 228 255 / 0.85));
+    transform-origin: 100% 50%;
+    opacity: 0;
+    animation: shoot 0.9s ease-out forwards;
+  }
+  @keyframes shoot {
+    0% {
+      opacity: 0;
+      translate: 0 0;
+    }
+    18% {
+      opacity: 0.85;
+    }
+    100% {
+      opacity: 0;
+      translate: var(--dx) var(--dy);
+    }
+  }
+
+  .id-sign {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 92px;
+    border: 1px solid var(--color-line);
+    background: rgb(4 7 16 / 0.5);
+  }
+  .id-sign > span {
+    position: absolute;
+    left: 10px;
+    top: 8px;
+  }
+  .id-sign-ink {
+    height: 72px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.92;
+  }
+  .id-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  @media (max-width: 767px) {
+    .id-stats {
+      grid-template-columns: 1fr 1fr;
+    }
+    .id-stats > div:nth-child(n) {
+      grid-column: auto;
+      grid-row: auto;
+      border-top: 0;
+      border-left: 0;
+    }
+    .id-stats > div:nth-child(even) {
+      border-left: 1px solid var(--color-line);
+    }
+    .id-stats > div:nth-child(n + 3) {
+      border-top: 1px solid var(--color-line);
+    }
+  }
+
+  /* names shrink with their tile, so they can never run into the next one */
+  .software-grid > li {
+    container-type: inline-size;
+    min-width: 0;
+  }
+  .software-name {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-size: clamp(6.5px, 8.2cqw, 10px);
+    letter-spacing: 0.12em;
+    color: var(--color-mute);
+    white-space: nowrap;
+  }
+
+  /* the logo presentation and its four notes share one width: as large as the screen
+     allows while the whole square image still fits in view */
+  .logo-block {
+    width: min(100%, max(560px, calc(100dvh - var(--nav-h) - 84px)));
+    margin-inline: auto;
+  }
+  .logo-stage-view {
+    height: auto;
+    aspect-ratio: 1;
+  }
+  .logo-stage-art {
+    width: 100%;
+  }
+  .mark-tile {
+    width: min(62%, 150px);
+    aspect-ratio: 1;
+    padding: 12%;
+    box-sizing: border-box;
+    border: 1px solid rgb(201 214 242 / 0.14);
+    background: rgb(4 7 16 / 0.5);
+  }
+  .photo-link {
+    display: inline;
+    padding: 0;
+    font: inherit;
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--color-cosmic);
+    text-underline-offset: 4px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  .photo-link:hover {
+    color: var(--color-cosmic);
+  }
+}
+
+/* ── Round 4 fixes: nothing may collide or spill at any screen size ─────────── */
+@layer components {
+  /* the four facts strip: hairlines come from the gaps, so any arrangement stays tidy */
+  .id-stats,
+  .id-stats > div:nth-child(n) {
+    border: 0;
+  }
+  .id-stats {
+    gap: 1px;
+    background: rgb(201 214 242 / 0.16);
+    outline: 1px solid rgb(201 214 242 / 0.16);
+  }
+  .id-stats > div {
+    background: #070b17;
+  }
+  .id-stat-text {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-size: 10px;
+    line-height: 1.5;
+    letter-spacing: 0.2em;
+    color: var(--color-ink);
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 1023px) {
+    .id-stats {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 479px) {
+    /* experience and valid-until share a row; the two longer facts get a row each */
+    .id-stats > div:nth-child(4) {
+      order: 1;
+    }
+    .id-stats > div:nth-child(2),
+    .id-stats > div:nth-child(3) {
+      order: 2;
+      grid-column: 1 / -1;
+    }
+    .id-stat-text {
+      font-size: 9px;
+      letter-spacing: 0.14em;
+    }
+    .id-row {
+      grid-template-columns: 8.9rem minmax(0, 1fr);
+      gap: 0.5rem;
+    }
+    .id-row > dt {
+      letter-spacing: 0.1em;
+    }
+    .software-grid {
+      gap: 0.4rem;
+    }
+    .software-grid > li {
+      padding-inline: 2px;
+    }
+  }
+  .software-name {
+    font-size: min(10px, 7.4cqw);
+  }
+}
+@layer components {
+  @media (min-width: 480px) and (max-width: 639px) {
+    .id-row {
+      grid-template-columns: 10rem minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 479px) {
+    .id-stats > div {
+      padding: 0.8rem 0.75rem;
+    }
+    .id-stats dt {
+      letter-spacing: 0.14em;
+    }
+  }
+}
+@layer components {
+  .mark-tile {
+    display: grid;
+    place-items: center;
+    width: min(72%, 176px);
+    padding: 0;
+  }
+  .mark-tile > img {
+    width: 74%;
+    height: 74%;
   }
 }

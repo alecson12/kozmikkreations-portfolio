@@ -466,28 +466,28 @@ export function createDirector(canvas) {
   const HOME_LIGHT = norm3([-0.4, 0.66, 0.45])
   const HOME_SKY = [
     {
-      l: [0.118, 0.315], p: [0.84, 0.155], r: 0.056, depth: 1.0, alpha: 0.95,
-      type: 'gas', colors: ['#120f30', '#463c96', '#c9c2f2'], atmosphere: '#a79bff',
-      ring: { inner: 1.45, outer: 2.25, tilt: 0.26, roll: 0.34, color: hex('#b8b0e6') },
+      l: [0.085, 0.27], p: [0.86, 0.15], r: 0.036, depth: 1.0, alpha: 0.55,
+      type: 'gas', colors: ['#0e1024', '#2e335c', '#9aa0c4'], atmosphere: '#6f78a8',
+      ring: { inner: 1.45, outer: 2.25, tilt: 0.26, roll: 0.34, color: hex('#8a90b4') },
       seed: 4.2, tilt: 0.34, spin: 0.03, moon: { a: 3.2, b: 0.85, roll: 0.34, rate: 0.11, r: 0.14 },
     },
     {
-      l: [0.865, 0.25], p: [0.12, 0.245], r: 0.024, depth: 0.5, alpha: 0.8,
+      l: [0.9, 0.205], p: [0.1, 0.235], r: 0.016, depth: 0.5, alpha: 0.5,
       type: 'ice', colors: ['#0c1a33', '#5f8fd0', '#e6f1ff'], atmosphere: '#a9d0ff', seed: 18.6, tilt: -0.2, spin: 0.02,
     },
     {
-      l: [0.928, 0.585], p: [0.9, 0.735], r: 0.04, depth: 1.5, alpha: 0.95,
+      l: [0.95, 0.6], p: [0.92, 0.745], r: 0.026, depth: 1.5, alpha: 0.55,
       type: 'rock', colors: ['#15171f', '#565c70', '#b9c0d2'], atmosphere: '#9fb0d8', seed: 9.1, tilt: 0.15, spin: 0.018,
     },
     {
-      l: [0.825, 0.765], p: [0.1, 0.705], r: 0.013, depth: 2.1, alpha: 0.9,
+      l: [0.86, 0.79], p: [0.08, 0.715], r: 0.009, depth: 2.1, alpha: 0.55,
       type: 'chrome', colors: ['#1a1f2e', '#8a93ab', '#eef2fb'], atmosphere: '#c9d6f2', seed: 2.7, tilt: 0, spin: 0.05,
     },
   ].map((b) => ({ ...b, colors: b.colors.map(hex), atmosphere: hex(b.atmosphere) }))
   // a loose stream of small rocks crossing the lower left corner, very slowly
   const HOME_ROCKS = Array.from({ length: 7 }, (_, i) => {
     const h = (n) => ((hashStr(`rock${i}-${n}`) % 1000) / 1000)
-    return { u: h(1), rate: 0.006 + h(2) * 0.006, off: (h(3) - 0.5) * 0.11, r: 0.0034 + h(4) * 0.0056, seed: 40 + i * 3.7, depth: 1.6 + h(5) * 1.4 }
+    return { u: h(1), rate: 0.006 + h(2) * 0.006, off: (h(3) - 0.5) * 0.11, r: 0.0024 + h(4) * 0.004, seed: 40 + i * 3.7, depth: 1.6 + h(5) * 1.4 }
   })
   const ROCK_LOOK = { colors: ['#101219', '#4a4f60', '#a7aec0'].map(hex), atmosphere: hex('#000000') }
 
@@ -509,7 +509,7 @@ export function createDirector(canvas) {
       const r = b.r * unit
       const body = {
         x, y, r, type: b.type, colors: b.colors, atmosphere: b.atmosphere, ring: b.ring,
-        seed: b.seed, spin: time * b.spin + b.seed, tilt: b.tilt, light: HOME_LIGHT, alpha: fade * b.alpha, glow: 0.9,
+        seed: b.seed, spin: time * b.spin + b.seed, tilt: b.tilt, light: HOME_LIGHT, alpha: fade * b.alpha, glow: 0.35,
       }
       if (!b.moon) {
         bodies.push(body)
@@ -523,7 +523,7 @@ export function createDirector(canvas) {
       const s = Math.sin(-b.moon.roll)
       const moon = {
         x: x + ox * c - oy * s, y: y + ox * s + oy * c, r: r * b.moon.r, type: 'rock', colors: ROCK_LOOK.colors, atmosphere: ROCK_LOOK.atmosphere,
-        seed: 71.3, spin: time * 0.05, tilt: 0, light: HOME_LIGHT, alpha: fade * 0.95, glow: 0,
+        seed: 71.3, spin: time * 0.05, tilt: 0, light: HOME_LIGHT, alpha: fade * 0.5, glow: 0,
       }
       if (Math.sin(a) < 0) bodies.push(moon, body)
       else bodies.push(body, moon)
@@ -538,7 +538,7 @@ export function createDirector(canvas) {
       const [x, y] = place(fx, fy, k.depth, k.seed)
       bodies.push({
         x, y, r: k.r * unit, type: 'rock', colors: ROCK_LOOK.colors, atmosphere: ROCK_LOOK.atmosphere,
-        seed: k.seed, spin: time * 0.12 + k.seed, tilt: k.off * 6, light: HOME_LIGHT, alpha: fade * Math.sin(Math.PI * u) * 0.9, glow: 0,
+        seed: k.seed, spin: time * 0.12 + k.seed, tilt: k.off * 6, light: HOME_LIGHT, alpha: fade * Math.sin(Math.PI * u) * 0.5, glow: 0,
       })
     }
   }

@@ -11,7 +11,7 @@ export const SITE = {
   nav: { home: 'Home', about: 'Behind Kozmik', universe: 'My Kreations', contact: 'Kontact Me' },
 
   home: {
-    headline: 'Kreativity',
+    headline: 'Kreativity beyond the ordinary.',
     text: 'Welcome to my creative universe. This is where ideas take shape, creativity has no limits, and every kreation tells a story. Come explore the mind, craft, and work behind Kozmik.',
     cta: 'Explore Projects',
   },
@@ -29,12 +29,15 @@ export const SITE = {
       specs: [
         { label: 'Species', value: 'Human' },
         { label: 'Origin', value: 'Earth' },
+        { label: 'Based in', value: 'Bulacan, Philippines' },
         { label: 'Classification', value: 'The Kreator' },
-        { label: 'Alias', value: '‘Crimzon’ & ‘Jr Tsubaki’' },
+        { label: 'Alias', value: '‘Jr Tsubaki’' },
         { label: 'Occupations', value: 'Designer, Developer, Artist' },
         { label: 'Affiliation', value: 'Kozmik Kreations' },
       ],
       number: { label: 'Galactic ID No', value: 'KK-121200' },
+      signature: { label: 'Signature', image: 'Alecson Signature' },
+      issued: { label: 'Issued', value: 'June 25, 2026' },
       status: { label: 'Status' }, // shows the commissions label from the contact block below
       valid: { label: 'Valid until', value: '∞' },
     },
@@ -88,14 +91,15 @@ export const SITE = {
       {
         title: 'The Kosmaj',
         image: 'The Kosmaj',
-        photo: 'Kosmaj photo',
+        // these words in the text become a link that opens the photo
+        link: { phrase: 'Kosmaj Monument', photo: 'Kosmaj photo', caption: 'The Kosmaj Monument' },
         text: 'Inspired by the Kosmaj Monument, reflecting my belief that freedom lies at the heart of art and self-expression.',
       },
     ],
   },
 
   contact: {
-    headline: 'Let’s create something out of this world.',
+    headline: 'Let’s Kreate something out of this world.',
     // Set open to false to show the closed label instead.
     commissions: { open: true, openLabel: 'Open for commissions', closedLabel: 'Commissions closed' },
     email: 'kozmikkreations.design@gmail.com',

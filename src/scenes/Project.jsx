@@ -28,14 +28,14 @@ export default function Project({ projectId, phase }) {
   // back button · centred title · project switcher (labelled, so it is not mistaken for the slide arrows)
   const header = (
     <div
-      className="rise grid flex-none grid-cols-[auto_auto] items-center justify-between gap-x-3 gap-y-4 px-5 pb-4 sm:grid-cols-[1fr_auto_1fr] sm:gap-x-6 sm:px-8 lg:px-12"
+      className="rise grid flex-none grid-cols-[auto_auto] items-center justify-between gap-x-3 gap-y-4 px-5 pb-4 sm:px-8 wide:grid-cols-[auto_minmax(0,1fr)_auto] wide:gap-x-6 lg:px-12"
       style={{ '--d': '60ms' }}
     >
       <a href={links.universe} aria-label={`Back to ${SITE.nav.universe}`} className="btn min-h-11 justify-self-start gap-2 px-3 text-[10px] tracking-[0.1em] sm:gap-[0.9em] sm:px-6 sm:tracking-[0.26em]">
         <Arrow dir="left" size={14} className="order-first" />
-        <span>{SITE.nav.universe}</span>
+        <span className="max-[379px]:hidden">{SITE.nav.universe}</span>
       </a>
-      <div className="order-last col-span-2 min-w-0 text-center sm:order-none sm:col-span-1">
+      <div className="order-last col-span-2 min-w-0 text-center wide:order-none wide:col-span-1">
         <p className="eyebrow truncate">{project.kind}</p>
         <h1 className="display chrome-text mt-2.5 text-balance text-[clamp(17px,2.5vw,30px)]">{project.title}</h1>
       </div>
@@ -79,9 +79,6 @@ export default function Project({ projectId, phase }) {
         <span className="display text-[11px] tracking-[0.12em] text-mute transition-colors group-hover:text-ink sm:text-[13px]">
           {next.title}
         </span>
-      </a>
-      <a href={links.universe} className="label col-span-2 mt-3 flex items-center justify-center gap-3 py-3 text-[10px] text-mute transition-colors hover:text-ink">
-        <Arrow dir="left" size={13} /> Back to all projects
       </a>
     </nav>
   )

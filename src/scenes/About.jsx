@@ -1,9 +1,42 @@
-import { Arrow, Mark, Sparkle } from '../components/Bits.jsx'
+import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { Arrow, Close, Mark, Sparkle } from '../components/Bits.jsx'
 import LogoCycler from '../components/LogoCycler.jsx'
 import { Picture } from '../components/Media.jsx'
 import { SITE } from '../content/site.js'
 import { aboutMedia } from '../lib/projects.js'
 import { links } from '../lib/router.js'
+
+// A photo opened from a word in the text (the Kosmaj Monument). Click anywhere or press Esc to close.
+function PhotoPop({ item, label, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        onClose()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
+  return createPortal(
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={label}
+      className="fade fixed inset-0 z-50 flex cursor-zoom-out flex-col items-center justify-center gap-4 bg-void/90 p-6 backdrop-blur-sm"
+      style={{ animationDuration: '0.3s' }}
+      onClick={onClose}
+    >
+      <Picture item={item} alt={label} eager sizes="(max-width: 700px) 90vw, 560px" className="max-h-[76vh] w-auto max-w-full object-contain" />
+      <p className="label text-[10px] text-mute">{label}</p>
+      <button type="button" autoFocus className="icon-btn absolute right-5 top-5" aria-label="Close" onClick={onClose}>
+        <Close />
+      </button>
+    </div>,
+    document.body,
+  )
+}
 
 // Behind Kozmik: the creator's identity card, then the story, tools, logo and services.
 // All wording comes from content/site.js; all pictures from the AboutMe folder.
@@ -11,8 +44,26 @@ export default function About({ phase }) {
   const a = SITE.about
   const c = SITE.contact.commissions
   const portrait = aboutMedia(a.portrait)
+  const signature = aboutMedia(a.id.signature.image)
   const stages = a.markStages.map((s) => ({ label: s.label, item: aboutMedia(s.image) })).filter((s) => s.item)
+  const [pop, setPop] = useState(null)
   const heading = 'display text-[13px] tracking-[0.16em] text-cosmic sm:text-[14px]'
+
+  // A sentence with one phrase turned into a link that opens a photo.
+  const withLink = (m) => {
+    const photo = m.link ? aboutMedia(m.link.photo) : null
+    const at = photo ? m.text.indexOf(m.link.phrase) : -1
+    if (at < 0) return m.text
+    return (
+      <>
+        {m.text.slice(0, at)}
+        <button type="button" className="photo-link" onClick={() => setPop({ item: photo, label: m.link.caption })}>
+          {m.link.phrase}
+        </button>
+        {m.text.slice(at + m.link.phrase.length)}
+      </>
+    )
+  }
 
   return (
     <section className="scene scene-scroll" data-phase={phase} aria-label={SITE.nav.about}>
@@ -37,8 +88,16 @@ export default function About({ phase }) {
           </header>
 
           <div className="grid gap-x-10 gap-y-7 p-5 sm:grid-cols-[minmax(200px,0.55fr)_minmax(0,1fr)] sm:p-8 lg:grid-cols-[330px_minmax(0,1fr)]">
-            <div className="id-photo mx-auto w-full max-w-[330px] sm:mx-0">
-              {portrait && <Picture item={portrait} alt={a.name} eager sizes="330px" className="block h-full w-full object-cover" />}
+            <div className="mx-auto flex w-full max-w-[330px] flex-col gap-3 sm:mx-0">
+              <div className="id-photo">
+                {portrait && <Picture item={portrait} alt={a.name} eager sizes="330px" className="block h-full w-full object-cover" />}
+              </div>
+              {signature && (
+                <div className="id-sign">
+                  <span className="label text-[8px] text-mute">{a.id.signature.label}</span>
+                  <Picture item={signature} alt={`Signature of ${a.name}`} sizes="140px" className="id-sign-ink" />
+                </div>
+              )}
             </div>
 
             <div className="relative flex min-w-0 flex-col justify-center">
@@ -56,30 +115,33 @@ export default function About({ phase }) {
                   </div>
                 ))}
               </dl>
-
             </div>
           </div>
 
-        <dl className="id-stats mx-5 mb-5 sm:mx-8 sm:mb-8">
-          <div>
-            <dt className="label text-[9px] text-mute">{a.id.experience.label}</dt>
-            <dd className="display mt-1.5 text-[20px] leading-none text-ink sm:text-[24px]">
-              {String(a.id.experience.value).padStart(2, '0')}
-              <span className="label ml-2 text-[9px] text-mute">{a.id.experience.unit}</span>
-            </dd>
-          </div>
-          <div>
-            <dt className="label text-[9px] text-mute">{a.id.status.label}</dt>
-            <dd className="label mt-2 flex items-center gap-2 text-[10px] leading-[1.5] text-ink">
-              <span className={`h-1.5 w-1.5 flex-none rounded-full ${c.open ? 'bg-cosmic' : 'bg-faint'}`} />
-              {c.open ? c.openLabel : c.closedLabel}
-            </dd>
-          </div>
-          <div>
-            <dt className="label text-[9px] text-mute">{a.id.valid.label}</dt>
-            <dd className="display mt-1 text-[24px] leading-none text-ink sm:text-[28px]">{a.id.valid.value}</dd>
-          </div>
-        </dl>
+          <dl className="id-stats mx-5 mb-5 sm:mx-8 sm:mb-8">
+            <div>
+              <dt className="label text-[9px] text-mute">{a.id.experience.label}</dt>
+              <dd className="display mt-1.5 text-[20px] leading-none text-ink sm:text-[24px]">
+                {String(a.id.experience.value).padStart(2, '0')}
+                <span className="label ml-2 text-[9px] text-mute">{a.id.experience.unit}</span>
+              </dd>
+            </div>
+            <div>
+              <dt className="label text-[9px] text-mute">{a.id.status.label}</dt>
+              <dd className="id-stat-text mt-2 flex items-center gap-2">
+                <span className={`h-1.5 w-1.5 flex-none rounded-full ${c.open ? 'bg-cosmic' : 'bg-faint'}`} />
+                {c.open ? c.openLabel : c.closedLabel}
+              </dd>
+            </div>
+            <div>
+              <dt className="label text-[9px] text-mute">{a.id.issued.label}</dt>
+              <dd className="id-stat-text mt-2">{a.id.issued.value}</dd>
+            </div>
+            <div>
+              <dt className="label text-[9px] text-mute">{a.id.valid.label}</dt>
+              <dd className="display mt-1 text-[24px] leading-none text-ink sm:text-[28px]">{a.id.valid.value}</dd>
+            </div>
+          </dl>
         </article>
 
         {/* ── the story · the tools ───────────────────────────────────────── */}
@@ -97,7 +159,7 @@ export default function About({ phase }) {
             </div>
           </div>
 
-          <div className="id-card rise flex flex-col p-6 sm:p-8" style={{ '--i': 2 }}>
+          <div className="id-card rise flex flex-col p-4 min-[400px]:p-6 sm:p-8" style={{ '--i': 2 }}>
             <h2 className={heading}>{a.softwareTitle}</h2>
             <ul className="software-grid mt-5 flex-1">
               {a.software.map((s) => {
@@ -105,7 +167,7 @@ export default function About({ phase }) {
                 return (
                   <li key={s.name}>
                     {icon && <Picture item={icon} alt="" sizes="110px" className="software-icon" />}
-                    <span className="label text-[8px] tracking-[0.14em] text-mute sm:text-[10px] sm:tracking-[0.26em]">{s.name}</span>
+                    <span className="software-name">{s.name}</span>
                   </li>
                 )
               })}
@@ -119,38 +181,23 @@ export default function About({ phase }) {
             <h2 className="eyebrow whitespace-nowrap">{a.markTitle}</h2>
             <div className="hairline flex-1" />
           </div>
-          {stages.length > 0 && (
-            <div className="mt-7">
-              <LogoCycler stages={stages} seconds={a.markSeconds} />
-            </div>
-          )}
-          <div className="mt-5 grid gap-5 md:grid-cols-2">
-            {a.mark.map((m, i) => {
-              const img = aboutMedia(m.image)
-              const photo = m.photo ? aboutMedia(m.photo) : null
-              return (
-                <div key={m.title} className="id-card flex items-center gap-5 p-5 sm:gap-6 sm:p-6 md:max-lg:flex-col md:max-lg:items-start md:max-lg:gap-4">
-                  <div className="relative flex h-[84px] w-[84px] flex-none items-center justify-center sm:h-[104px] sm:w-[104px]">
-                    {img && <Picture item={img} alt="" sizes="104px" className="h-full w-full object-contain" />}
-                    {photo && (
-                      <Picture
-                        item={photo}
-                        alt="The Kosmaj Monument"
-                        sizes="60px"
-                        className="absolute -right-3 -top-3 w-[46px] rotate-[8deg] object-contain drop-shadow-[0_8px_14px_rgb(0_0_0/0.6)] sm:w-[54px]"
-                      />
-                    )}
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="display flex items-baseline gap-3 text-[12px] tracking-[0.14em] text-ink sm:text-[13px]">
-                      <span className="label text-[9px] text-faint">0{i + 1}</span>
+          <div className="logo-block mt-7">
+            {stages.length > 0 && <LogoCycler stages={stages} seconds={a.markSeconds} />}
+            <div className="mt-4 grid grid-cols-1 gap-4 min-[520px]:grid-cols-2">
+              {a.mark.map((m, i) => {
+                const img = aboutMedia(m.image)
+                return (
+                  <div key={m.title} className="id-card flex flex-col items-center p-5 text-center sm:p-7">
+                    <div className="mark-tile">{img && <Picture item={img} alt="" sizes="140px" className="h-full w-full object-contain" />}</div>
+                    <h3 className="display mt-5 text-[12px] tracking-[0.14em] text-cosmic sm:text-[13px]">
+                      <span className="label mr-2.5 text-[9px] text-faint">0{i + 1}</span>
                       {m.title}
                     </h3>
-                    <p className="mt-2 text-[13px] leading-[1.65] text-mute sm:text-[14px]">{m.text}</p>
+                    <p className="mt-2.5 text-[13px] leading-[1.65] text-mute sm:text-[14px]">{withLink(m)}</p>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
         </div>
 
@@ -180,6 +227,8 @@ export default function About({ phase }) {
           </a>
         </div>
       </div>
+
+      {pop && <PhotoPop item={pop.item} label={pop.label} onClose={() => setPop(null)} />}
     </section>
   )
 }

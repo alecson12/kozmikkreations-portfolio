@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import Nav from './components/Nav.jsx'
+import ShootingStars from './components/ShootingStars.jsx'
 import { DirectorContext } from './cosmos/context.js'
 import { createDirector } from './cosmos/director.js'
 import { SITE } from './content/site.js'
@@ -85,6 +86,7 @@ export default function App() {
   return (
     <>
       <canvas ref={canvasRef} className="sky-fallback fixed inset-0 h-full w-full" aria-hidden="true" />
+      <ShootingStars />
       {director && (
         <DirectorContext.Provider value={director}>
           <Nav route={route} />

@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { fallbackSrc, srcSet } from '../lib/projects.js'
-import { Arrow } from './Bits.jsx'
 
 const FADE_MS = 900
 
 // The logo icon versions, one at a time, cross-fading on their own and on click.
 // `stages` = [{ label, item }] where item is a picture from aboutMedia().
-// The artwork is always shown whole; the soft glow behind it is the same picture, blurred.
+// The artwork is always shown whole, as large as the block allows.
 export default function LogoCycler({ stages, seconds = 3.5 }) {
   const [index, setIndex] = useState(0)
   const [visible, setVisible] = useState(true)
@@ -58,28 +57,16 @@ export default function LogoCycler({ stages, seconds = 3.5 }) {
       <button
         type="button"
         onClick={onClick}
-        className="logo-stage-view group"
+        className="logo-stage-view"
+        title="Click for the next version"
         aria-label={`Logo version ${index + 1} of ${count}: ${current.label}. Show the next one.`}
       >
-        {stages.map((s, i) => (
-          <img
-            key={`glow-${s.label}`}
-            src={s.item.variants[0].src}
-            alt=""
-            aria-hidden="true"
-            loading="lazy"
-            decoding="async"
-            draggable="false"
-            className="logo-stage-glow"
-            data-on={i === index}
-          />
-        ))}
         {stages.map((s, i) => (
           <img
             key={s.label}
             src={fallbackSrc(s.item)}
             srcSet={srcSet(s.item)}
-            sizes="(max-width: 700px) 100vw, 640px"
+            sizes="(max-width: 900px) 100vw, 900px"
             width={s.item.w}
             height={s.item.h}
             alt={i === index ? `Kozmik logo icon: ${s.label}` : ''}
@@ -91,9 +78,6 @@ export default function LogoCycler({ stages, seconds = 3.5 }) {
             data-on={i === index}
           />
         ))}
-        <span className="logo-stage-hint label" aria-hidden="true">
-          Next <Arrow size={12} />
-        </span>
       </button>
 
       <div className="flex items-center justify-between gap-4 border-t border-line px-4 py-3 sm:px-6">
