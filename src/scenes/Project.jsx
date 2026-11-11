@@ -56,6 +56,34 @@ export default function Project({ projectId, phase }) {
     </div>
   )
 
+  // "About this project": the short story and the facts that are known. Nothing is shown for a fact that is not set.
+  const facts = [
+    ['Category', project.kind],
+    ['Client', project.client],
+    ['Year', project.year],
+    ['Role', project.role],
+    ['Tools', project.tools],
+  ].filter(([, v]) => v)
+  const story = project.story && (
+    <section aria-label="About this project" className="mx-auto w-full max-w-[1500px] px-5 pb-8 sm:px-8 lg:px-12">
+      <div className="flex h-16 items-center gap-5">
+        <h2 className="eyebrow whitespace-nowrap">About this project</h2>
+        <div className="hairline flex-1" />
+      </div>
+      <div className="grid gap-x-16 gap-y-7 pt-2 lg:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)]">
+        <p className="max-w-[66ch] text-pretty text-[clamp(15px,1.2vw,18px)] leading-[1.75] text-ink/90">{project.story}</p>
+        <dl className="story-facts self-start">
+          {facts.map(([k, v]) => (
+            <div key={k}>
+              <dt className="label text-[9px] text-mute sm:text-[10px]">{k}</dt>
+              <dd className="text-[14px] text-ink sm:text-[15px]">{v}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  )
+
   const footer = (
     <nav
       aria-label="More projects"
@@ -90,7 +118,7 @@ export default function Project({ projectId, phase }) {
 
       <div className="relative">
         {isCarousel ? (
-          <div className="flex flex-col" style={{ height: '100dvh', paddingTop: 'var(--nav-h)' }}>
+          <div className="flex flex-col" style={{ height: project.story ? 'calc(100dvh - 58px)' : '100dvh', paddingTop: 'var(--nav-h)' }}>
             {header}
             <div className="fade flex min-h-0 flex-1 flex-col" style={{ '--d': '140ms' }}>
               <Carousel project={project} onZoom={setZoomed} paused={zoomed !== null || phase === 'out'} />
@@ -99,6 +127,7 @@ export default function Project({ projectId, phase }) {
         ) : (
           <div style={{ paddingTop: 'var(--nav-h)' }}>
             {header}
+            {story}
             <div className="px-5 pb-10 pt-2 sm:px-8 lg:px-12">
               <Gallery project={project} onZoom={setZoomed} />
             </div>
@@ -107,6 +136,7 @@ export default function Project({ projectId, phase }) {
             </p>
           </div>
         )}
+        {isCarousel && story}
         {footer}
       </div>
 

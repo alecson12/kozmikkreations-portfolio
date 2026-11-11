@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { SITE } from '../content/site.js'
 import { links } from '../lib/router.js'
 import { Mark, Sparkle, Wordmark } from './Bits.jsx'
+import SoundControl from './SoundControl.jsx'
 
 const ITEMS = [
   { id: 'home', label: SITE.nav.home, href: links.home },
@@ -36,7 +37,8 @@ export default function Nav({ route }) {
           </a>
         </div>
 
-        <nav aria-label="Main" className="pointer-events-auto hidden items-center gap-8 md:flex lg:gap-10">
+        <div className="pointer-events-auto flex items-center gap-4 md:gap-7 lg:gap-9">
+        <nav aria-label="Main" className="hidden items-center gap-7 md:flex lg:gap-10">
           {ITEMS.map((item) => (
             <a
               key={item.id}
@@ -50,9 +52,11 @@ export default function Nav({ route }) {
           ))}
         </nav>
 
+        <SoundControl />
+
         <button
           type="button"
-          className="label pointer-events-auto flex h-11 items-center gap-3 text-ink md:hidden"
+          className="label flex h-11 items-center gap-3 text-ink md:hidden"
           aria-expanded={open}
           aria-controls="menu"
           onClick={() => setOpen((v) => !v)}
@@ -69,6 +73,7 @@ export default function Nav({ route }) {
             />
           </span>
         </button>
+        </div>
       </div>
 
       {/* phone menu */}
