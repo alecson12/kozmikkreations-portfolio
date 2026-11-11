@@ -14,6 +14,7 @@ export const SITE = {
     headline: 'Kreativity beyond the ordinary.',
     text: 'Welcome to my creative universe. This is where ideas take shape, creativity has no limits, and every kreation tells a story. Come explore the mind, craft, and work behind Kozmik.',
     cta: 'Explore Projects',
+    aboutCta: 'Who is Kozmik?', // the quieter button beside it, leads to Behind Kozmik
   },
 
   // Taken word for word from the “Behind Kozmik”, “Logo Breakdown” and “Services”
@@ -34,6 +35,7 @@ export const SITE = {
         { label: 'Alias', value: '‘Jr Tsubaki’' },
         { label: 'Occupations', value: 'Designer, Developer, Artist' },
         { label: 'Affiliation', value: 'Kozmik Kreations' },
+        { label: 'Language', value: 'English & Tagalog' },
       ],
       number: { label: 'Galactic ID No', value: 'KK-121200' },
       signature: { label: 'Signature', image: 'Alecson Signature' },
@@ -46,6 +48,49 @@ export const SITE = {
       'The mind behind Kozmik Kreations, Alecson Gantica, is deeply passionate about the act of creating. As both a dance artist and game developer, he blends creativity and logic to craft unique designs inspired by purpose, self-expression, and the cosmos.',
       'Through Kozmik Kreations, he aims to create visual identities that not only stand out, but genuinely connect and leave a lasting impression.',
     ],
+    // Schooling, left to right. A step with `graduated` gets the highlighted badge.
+    education: {
+      title: 'Education',
+      steps: [
+        {
+          level: 'Primary',
+          schools: [
+            { name: 'St. Mary’s College of Meycauayan', period: '2006 — 2009' },
+            { name: 'Calvario Elementary School', period: '2009 — 2013' },
+          ],
+        },
+        {
+          level: 'Secondary',
+          course: 'Science, Technology, Engineering and Mathematics',
+          schools: [{ name: 'St. Michael School of Marilao', period: '2013 — 2019' }],
+        },
+        {
+          level: 'Tertiary',
+          course: 'Bachelor of Science in Information Technology',
+          schools: [{ name: 'Pambayang Dalubhasaan ng Marilao' }],
+          graduated: 'Graduated',
+        },
+      ],
+    },
+    softSkills: {
+      title: 'Soft Skills',
+      items: ['Creative Problem-Solving', 'Adaptability', 'Team Collaboration', 'Communication', 'Presentation Skills', 'Attention to Detail'],
+    },
+    beyond: {
+      title: 'Beyond Design',
+      subtitle: 'More things I’m into',
+      items: [
+        { name: 'Game Development', note: 'my job' },
+        { name: 'Dance' },
+        { name: 'Fashion & Style' },
+        { name: 'Gaming' },
+        { name: 'Video Editing' },
+        { name: 'Movies' },
+        { name: 'Comics' },
+        { name: 'Travel' },
+        { name: 'Music Mixing' },
+      ],
+    },
     servicesTitle: 'Services',
     services: [
       'Logo & Brand Identity',
@@ -61,7 +106,9 @@ export const SITE = {
       { name: 'Illustrator', icon: 'AI Icon' },
       { name: 'Canva', icon: 'Canva Icon' },
     ],
-    markTitle: 'Logo breakdown',
+    markTitle: 'Kozmik’s Icon Breakdown',
+    // shown after the icon breakdown: the official wordmark artwork (a file in AboutMe/)
+    wordmark: { title: 'Kozmik’s Wordmark', image: 'ShapingKozmik_pg3', caption: 'Official wordmark' },
     // The logo icon versions shown one after another (files in AboutMe/LogoIcon), in this order.
     markStages: [
       { image: 'KozmikIcon_Sketch', label: 'Sketch' },

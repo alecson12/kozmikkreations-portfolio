@@ -45,6 +45,7 @@ export default function About({ phase }) {
   const c = SITE.contact.commissions
   const portrait = aboutMedia(a.portrait)
   const signature = aboutMedia(a.id.signature.image)
+  const wordmark = aboutMedia(a.wordmark.image)
   const stages = a.markStages.map((s) => ({ label: s.label, item: aboutMedia(s.image) })).filter((s) => s.item)
   const [pop, setPop] = useState(null)
   const heading = 'display text-[13px] tracking-[0.16em] text-cosmic sm:text-[14px]'
@@ -168,8 +169,63 @@ export default function About({ phase }) {
           </div>
         </div>
 
-        {/* ── logo breakdown ───────────────────────────────────────────────── */}
-        <div className="rise mt-16" style={{ '--i': 3 }}>
+        {/* ── education: primary → secondary → tertiary ───────────────────── */}
+        <div className="id-card rise mt-6 p-6 sm:p-8" style={{ '--i': 3 }}>
+          <h2 className={heading}>{a.education.title}</h2>
+          <ol className="edu-track mt-6">
+            {a.education.steps.map((step) => (
+              <li key={step.level} className="edu-step" data-done={step.graduated ? 'true' : undefined}>
+                <span className="edu-node" aria-hidden="true">
+                  {step.graduated && <Sparkle size={11} />}
+                </span>
+                <p className="label text-[10px] text-cosmic">{step.level}</p>
+                {step.course && <p className="mt-2.5 text-[15px] leading-snug text-ink sm:text-[16px]">{step.course}</p>}
+                {step.schools.map((s) => (
+                  <p key={s.name} className="mt-2.5 text-[13px] leading-snug text-mute sm:text-[14px]">
+                    <span className={step.course ? '' : 'text-ink'}>{s.name}</span>
+                    {s.period && <span className="label mt-1 block text-[9px] text-faint">{s.period}</span>}
+                  </p>
+                ))}
+                {step.graduated && (
+                  <p className="edu-grad">
+                    <Sparkle size={10} /> {step.graduated}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        {/* ── soft skills · beyond design ─────────────────────────────────── */}
+        <div className="mt-6 grid gap-6 lg:grid-cols-2">
+          <div className="id-card rise p-6 sm:p-8" style={{ '--i': 4 }}>
+            <h2 className={heading}>{a.softSkills.title}</h2>
+            <ul className="mt-4 grid gap-x-8 sm:grid-cols-2">
+              {a.softSkills.items.map((s) => (
+                <li key={s} className="flex items-center gap-3.5 border-b border-line py-3.5 text-[14px] text-ink sm:text-[15px]">
+                  <Sparkle size={9} className="flex-none text-cosmic" />
+                  {s}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="id-card rise p-6 sm:p-8" style={{ '--i': 5 }}>
+            <h2 className={heading}>{a.beyond.title}</h2>
+            <p className="label mt-2.5 text-[9px] text-mute">{a.beyond.subtitle}</p>
+            <ul className="mt-7 flex flex-wrap gap-x-2.5 gap-y-4">
+              {a.beyond.items.map((b) => (
+                <li key={b.name} className="chip">
+                  {b.note && <span className="chip-note">{b.note}</span>}
+                  {b.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* ── icon breakdown ───────────────────────────────────────────────── */}
+        <div className="rise mt-16" style={{ '--i': 6 }}>
           <div className="flex items-center gap-5">
             <h2 className="eyebrow whitespace-nowrap">{a.markTitle}</h2>
             <div className="hairline flex-1" />
@@ -194,8 +250,22 @@ export default function About({ phase }) {
           </div>
         </div>
 
+        {/* ── the wordmark ────────────────────────────────────────────────── */}
+        {wordmark && (
+          <div className="rise mt-16" style={{ '--i': 7 }}>
+            <div className="flex items-center gap-5">
+              <h2 className="eyebrow whitespace-nowrap">{a.wordmark.title}</h2>
+              <div className="hairline flex-1" />
+            </div>
+            <figure className="logo-block id-card mt-7 overflow-hidden">
+              <Picture item={wordmark} alt="The official Kozmik Kreations wordmark" sizes="(max-width: 900px) 100vw, 900px" className="block h-auto w-full" />
+              <figcaption className="label border-t border-line px-4 py-3 text-[10px] text-cosmic sm:px-6">{a.wordmark.caption}</figcaption>
+            </figure>
+          </div>
+        )}
+
         {/* ── services ─────────────────────────────────────────────────────── */}
-        <div className="rise mt-16" style={{ '--i': 4 }}>
+        <div className="rise mt-16" style={{ '--i': 8 }}>
           <div className="flex items-center gap-5">
             <h2 className="eyebrow whitespace-nowrap">{a.servicesTitle}</h2>
             <div className="hairline flex-1" />
@@ -210,7 +280,7 @@ export default function About({ phase }) {
           </ul>
         </div>
 
-        <div className="rise mt-14 flex flex-wrap gap-3" style={{ '--i': 5 }}>
+        <div className="rise mt-14 flex flex-wrap gap-3" style={{ '--i': 9 }}>
           <a href={links.universe} className="btn btn-chrome">
             <span>{SITE.home.cta}</span>
             <Arrow size={15} />

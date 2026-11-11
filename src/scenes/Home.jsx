@@ -4,7 +4,7 @@ import { links } from '../lib/router.js'
 
 // The cosmic introduction: the mark, one line, a welcome, one way in.
 export default function Home({ phase, intro }) {
-  const { headline, text, cta } = SITE.home
+  const { headline, text, cta, aboutCta } = SITE.home
   // On the very first load the mark condenses first and the words follow;
   // when returning from another page everything simply rises in.
   const d = intro ? '500ms' : '0ms'
@@ -27,10 +27,15 @@ export default function Home({ phase, intro }) {
         >
           {text}
         </p>
-        <a href={links.universe} className="btn btn-chrome rise mt-[clamp(26px,4.6vh,48px)]" style={{ '--i': 3, '--d': d }}>
-          <span>{cta}</span>
-          <Arrow size={15} />
-        </a>
+        <div className="rise mt-[clamp(26px,4.6vh,48px)] flex flex-wrap items-center justify-center gap-3" style={{ '--i': 3, '--d': d }}>
+          <a href={links.about} className="btn max-sm:w-[min(100%,290px)]">
+            <span>{aboutCta}</span>
+          </a>
+          <a href={links.universe} className="btn btn-chrome max-sm:w-[min(100%,290px)]">
+            <span>{cta}</span>
+            <Arrow size={15} />
+          </a>
+        </div>
       </div>
     </section>
   )

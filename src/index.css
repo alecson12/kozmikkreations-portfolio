@@ -952,3 +952,123 @@
     height: 100%;
   }
 }
+
+/* ── Round 7: education track, interest chips ───────────────────────────────── */
+@layer components {
+  /* three steps on one line, joined by a rail that ends on the graduation */
+  .edu-track {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 2rem;
+  }
+  .edu-step {
+    position: relative;
+    padding-top: 2.1rem;
+    min-width: 0;
+  }
+  .edu-step::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: -2rem;
+    top: 7px;
+    height: 1px;
+    background: var(--color-line-strong);
+  }
+  .edu-step:last-child::before {
+    right: 0;
+    background: linear-gradient(90deg, var(--color-line-strong), transparent 70%);
+  }
+  .edu-node {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: grid;
+    place-items: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 999px;
+    border: 1px solid var(--color-line-strong);
+    background: #070b17;
+    color: #060914;
+  }
+  .edu-step[data-done] .edu-node {
+    width: 23px;
+    height: 23px;
+    top: -4px;
+    border-color: #fff;
+    background: linear-gradient(180deg, #ffffff, #c6ccda 60%, #8f96ab);
+    box-shadow: 0 0 18px rgb(140 175 255 / 0.55);
+  }
+  .edu-grad {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    margin-top: 1rem;
+    padding: 9px 16px 9px 13px;
+    font-family: var(--font-display);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #060914;
+    background: linear-gradient(180deg, #ffffff 0%, #e4e8f1 30%, #cfd4e1 78%, #9aa1b6 100%);
+    box-shadow:
+      inset 0 1px 0 #fff,
+      inset 0 -1px 0 rgb(30 34 54 / 0.5),
+      0 0 22px rgb(140 175 255 / 0.3);
+  }
+  @media (max-width: 767px) {
+    /* phones: the same three steps, one under another along a vertical rail */
+    .edu-track {
+      grid-template-columns: 1fr;
+      gap: 1.6rem 0;
+    }
+    .edu-step {
+      padding-top: 0;
+      padding-left: 2.4rem;
+    }
+    .edu-step::before {
+      left: 7px;
+      right: auto;
+      top: 0;
+      bottom: -1.6rem;
+      width: 1px;
+      height: auto;
+    }
+    .edu-step:last-child::before {
+      bottom: 0;
+      background: linear-gradient(180deg, var(--color-line-strong), transparent 70%);
+    }
+    .edu-step[data-done] .edu-node {
+      left: -4px;
+      top: -2px;
+    }
+  }
+
+  .chip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 0 15px;
+    font-size: 13.5px;
+    color: var(--color-ink);
+    border: 1px solid var(--color-line-strong);
+    background: rgb(6 10 24 / 0.5);
+    white-space: nowrap;
+  }
+  /* the little "my job" tag pinned to a chip's corner */
+  .chip-note {
+    position: absolute;
+    left: -7px;
+    top: -11px;
+    padding: 2px 6px;
+    font-family: var(--font-display);
+    font-size: 7.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #060914;
+    background: var(--color-cosmic);
+    rotate: -6deg;
+  }
+}
