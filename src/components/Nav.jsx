@@ -33,7 +33,8 @@ export default function Nav({ route }) {
         <div className="pointer-events-auto flex items-center gap-5 sm:gap-7">
           <a href={links.home} aria-label="Kozmik Kreations — home" className="flex items-center gap-3">
             <Mark className="w-7 sm:w-8" />
-            <Wordmark className="hidden h-[22px] w-auto opacity-95 sm:block md:hidden lg:block" />
+            {/* shown at every width except the narrow band where the four page names need the room */}
+            <Wordmark className="h-[20px] w-auto flex-none sm:h-[22px] min-[768px]:max-[859px]:hidden" />
           </a>
         </div>
 

@@ -57,6 +57,7 @@ export default function Project({ projectId, phase }) {
   )
 
   // "About this project": the short story and the facts that are known. Nothing is shown for a fact that is not set.
+  // It always comes after the images, with the same counter line in between, whatever the layout.
   const facts = [
     ['Category', project.kind],
     ['Client', project.client],
@@ -127,16 +128,15 @@ export default function Project({ projectId, phase }) {
         ) : (
           <div style={{ paddingTop: 'var(--nav-h)' }}>
             {header}
-            {story}
-            <div className="px-5 pb-10 pt-2 sm:px-8 lg:px-12">
+            <div className="px-5 pt-2 sm:px-8 lg:px-12">
               <Gallery project={project} onZoom={setZoomed} />
             </div>
-            <p className="label pb-2 text-center text-[10px] text-faint">
+            <p className="label flex h-14 items-center justify-center text-[10px] text-faint">
               {pieces} {pieces === 1 ? 'piece' : 'pieces'}
             </p>
           </div>
         )}
-        {isCarousel && story}
+        {story}
         {footer}
       </div>
 

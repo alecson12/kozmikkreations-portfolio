@@ -6,6 +6,7 @@ import { DirectorContext } from './cosmos/context.js'
 import { createDirector } from './cosmos/director.js'
 import { SITE } from './content/site.js'
 import { routeKey, useRoute } from './lib/router.js'
+import { startFavicon } from './lib/favicon.js'
 import { routeSound, startSfx } from './lib/sfx.js'
 import About from './scenes/About.jsx'
 import Contact from './scenes/Contact.jsx'
@@ -65,7 +66,10 @@ export default function App() {
 
   // sound: one set of listeners for the whole site, and a sound when the page changes
   const lastRoute = useRef(null)
-  useEffect(() => startSfx(), [])
+  useEffect(() => {
+    startSfx()
+    startFavicon()
+  }, [])
   useEffect(() => {
     routeSound(lastRoute.current, route)
     lastRoute.current = route

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Arrow, Close, Mark, Sparkle } from '../components/Bits.jsx'
+import { Arrow, Close, Mark, Sparkle, Wordmark } from '../components/Bits.jsx'
 import LogoCycler from '../components/LogoCycler.jsx'
 import { Picture } from '../components/Media.jsx'
 import { SITE } from '../content/site.js'
@@ -78,8 +78,8 @@ export default function About({ phase }) {
             <div className="flex min-w-0 items-center gap-3.5">
               <Mark className="w-8 flex-none sm:w-9" />
               <div className="min-w-0">
-                <p className="display truncate text-[12px] tracking-[0.2em] text-ink sm:text-[13px]">{SITE.brand}</p>
-                <p className="label mt-1 truncate text-[9px] text-mute">{a.id.document}</p>
+                <Wordmark className="block h-[24px] w-auto sm:h-[27px]" />
+                <p className="label mt-2 truncate text-[9px] text-mute">{a.id.document}</p>
               </div>
             </div>
             <p className="label flex flex-none items-baseline justify-between gap-3 text-[9px] leading-[1.9] text-mute sm:block sm:text-right">

@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "media": "node scripts/build-media.mjs"
+    "media": "node scripts/build-media.mjs",
+    "assets": "node scripts/build-assets.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.2.8",

@@ -29,6 +29,8 @@ const TICK = [
   'button[aria-controls="menu"]',
   'nav[aria-label="Planetary systems"] button',
 ].join(',')
+// Controls that move between project images make the slide sound themselves (see Carousel, Lightbox).
+const SLIDE = '[data-sfx="slide"]'
 // Never: links that leave the site, e-mail links, form fields, the sound panel itself.
 const SILENT = 'a[target="_blank"], a[href^="mailto:"], input, textarea, select, [data-sfx="none"], [data-sfx="none"] *'
 
@@ -38,10 +40,12 @@ export function startSfx() {
   if (started) return
   started = true
 
-  // the first real click / tap / key press is what allows audio at all
+  // The music is meant to be playing from the start. Browsers often refuse that until the
+  // visitor has interacted with the page, so every real click / tap / key press tries again
+  // (a tap only counts once the finger lifts, hence pointerup and click as well).
   const wake = () => audio.unlock()
-  window.addEventListener('pointerdown', wake, { capture: true, passive: true })
-  window.addEventListener('keydown', wake, { capture: true })
+  for (const type of ['pointerdown', 'pointerup', 'click', 'keydown']) window.addEventListener(type, wake, { capture: true, passive: true })
+  audio.boot()
 
   let lastEl = null
   let lastAt = 0
@@ -65,7 +69,7 @@ export function startSfx() {
     'click',
     (e) => {
       const t = e.target
-      if (!t.closest || t.closest(SILENT)) return
+      if (!t.closest || t.closest(SILENT) || t.closest(SLIDE)) return
       const small = t.closest(TICK)
       if (small && !small.disabled) return void audio.play('tick')
       const main = t.closest(CLICK)

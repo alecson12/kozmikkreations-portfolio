@@ -18,6 +18,7 @@ export function Mark({ className = '', sheen = false, style }) {
   )
 }
 
+// The official wordmark exactly as supplied (KozmikTypo_White.png): never retyped in a font.
 export function Wordmark({ className = '' }) {
   return <img src={WORDMARK} alt="Kozmik Kreations" width="1796" height="513" className={className} draggable="false" />
 }

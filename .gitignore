@@ -8,3 +8,6 @@ dist
 # The site uses the optimised copies in public/media, made by `npm run media`.
 /Projects/
 /AboutMe/
+
+# The ambient track as supplied. The site plays the web copy in public/audio, made by `npm run assets`.
+/*.mp3

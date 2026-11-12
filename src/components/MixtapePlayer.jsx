@@ -13,7 +13,7 @@ export default function MixtapePlayer() {
   const small = s.mixtapeSmall
   const [tall, setTall] = useState(false)
   const mix = SITE.audio?.mixtape
-  if (!open || !mix?.embed) return null
+  if (!open || !mix?.embed || !audio.mixtapeReady) return null // kept for later: see audio.mixtape.comingSoon in site.js
 
   const src = `${mix.embed}${mix.embed.includes('?') ? '&' : '?'}utm_source=generator&theme=0`
   return (

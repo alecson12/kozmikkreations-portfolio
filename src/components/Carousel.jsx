@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { audio } from '../lib/audio.js'
 import { Chevron } from './Bits.jsx'
 import { Clip, Picture } from './Media.jsx'
 
@@ -14,6 +15,9 @@ export default function Carousel({ project, onZoom, paused }) {
   const [box, setBox] = useState({ w: 0, h: 0 })
   const [active, setActive] = useState(0)
   const activeRef = useRef(0)
+  // a move asked for by a button, a pip or a key announces itself once; while it glides
+  // past the slides in between, the scroll stays quiet
+  const quietUntil = useRef(0)
 
   useLayoutEffect(() => {
     const el = stageRef.current
@@ -48,6 +52,10 @@ export default function Carousel({ project, onZoom, paused }) {
     (i, smooth = true) => {
       const idx = Math.max(0, Math.min(items.length - 1, i))
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      if (smooth && idx !== activeRef.current) {
+        audio.play('slide', { dir: idx > activeRef.current ? 1 : -1 })
+        quietUntil.current = performance.now() + 1100
+      }
       trackRef.current?.scrollTo({ left: centreOf(idx), behavior: smooth && !reduce ? 'smooth' : 'auto' })
     },
     [centreOf, items.length],
@@ -58,6 +66,7 @@ export default function Carousel({ project, onZoom, paused }) {
     if (!box.w) return
     const el = trackRef.current
     const snap = el.style.scrollSnapType
+    quietUntil.current = performance.now() + 400 // re-centring after a resize is not the visitor sliding
     el.style.scrollSnapType = 'none'
     el.scrollLeft = centreOf(activeRef.current)
     el.style.scrollSnapType = snap
@@ -80,6 +89,8 @@ export default function Carousel({ project, onZoom, paused }) {
       x += sizes[i].w
     }
     if (best !== activeRef.current) {
+      // dragged or swiped there by hand
+      if (performance.now() > quietUntil.current) audio.play('slide', { dir: best > activeRef.current ? 1 : -1 })
       activeRef.current = best
       setActive(best)
     }
@@ -160,6 +171,7 @@ export default function Carousel({ project, onZoom, paused }) {
               type="button"
               className="icon-btn absolute left-3 top-1/2 hidden -translate-y-1/2 backdrop-blur-sm sm:left-6 md:grid lg:left-10"
               aria-label="Previous slide"
+              data-sfx="slide"
               disabled={active === 0}
               onClick={() => goTo(active - 1)}
             >
@@ -169,6 +181,7 @@ export default function Carousel({ project, onZoom, paused }) {
               type="button"
               className="icon-btn absolute right-3 top-1/2 hidden -translate-y-1/2 backdrop-blur-sm sm:right-6 md:grid lg:right-10"
               aria-label="Next slide"
+              data-sfx="slide"
               disabled={active === items.length - 1}
               onClick={() => goTo(active + 1)}
             >
@@ -189,6 +202,7 @@ export default function Carousel({ project, onZoom, paused }) {
                 key={item.file}
                 type="button"
                 className="pip-btn"
+                data-sfx="slide"
                 aria-label={`Slide ${i + 1}`}
                 aria-current={i === active}
                 onClick={() => goTo(i)}

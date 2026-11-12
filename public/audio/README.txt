@@ -1,18 +1,21 @@
-BACKGROUND MUSIC FOR THE SITE (optional)
+THE AMBIENT TRACK
 
-The site already has a generated space ambience, so this folder can stay empty.
-Use it only if you want your own music file to play instead.
+float.mp3 is the web copy of "Float" by Out of Flux & Danny Shields: the music that plays
+behind the site. It is made from the original MP3 in the project folder by:
 
+    npm run assets
+
+To use another track
 1. Put ONE music file in this folder (MP3 is safest; keep it under about 5 MB).
-   Suggested name:  kozmik-ambient.mp3
 2. Open  src/content/site.js  and find  audio → music.
-   Write the file name there, for example:   file: 'kozmik-ambient.mp3'
-   You can also give it a title to show while it plays.
-3. Publish the site. The "Music" control in the sound panel now plays it.
+   Change  file,  title  and  artist.
+3. Publish the site.
 
-Rules the site follows by itself:
-- Music never starts on its own. The visitor has to press play.
-- It fades in and out, loops, and rests while the browser tab is in the background.
-- It is quiet by default (see  level  in the same place in site.js).
+What the site does by itself
+- It tries to start the track when the site opens. Most browsers only allow sound after the
+  visitor has clicked, tapped or pressed a key, so that is usually when it starts.
+- It loops, fades in and out, keeps playing while the visitor moves between pages, and rests
+  while the browser tab is in the background.
+- The visitor can pause it, set its volume, or mute everything from the speaker button.
 
 Only use music you made, bought a licence for, or that is free to use on a public website.

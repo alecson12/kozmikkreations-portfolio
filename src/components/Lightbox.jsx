@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { audio } from '../lib/audio.js'
 import { largest, srcSet } from '../lib/projects.js'
 import { Chevron, Close } from './Bits.jsx'
 
@@ -19,6 +20,7 @@ export default function Lightbox({ project, index, onIndex, onClose }) {
   const step = (d) => {
     const next = images[(pos + d + images.length) % images.length]
     setZoom(false)
+    audio.play('slide', { dir: d })
     onIndex(next.index)
   }
 
@@ -150,6 +152,7 @@ export default function Lightbox({ project, index, onIndex, onClose }) {
               type="button"
               className="icon-btn absolute left-3 top-1/2 -translate-y-1/2 backdrop-blur-sm sm:left-6"
               aria-label="Previous piece"
+              data-sfx="slide"
               onClick={() => step(-1)}
             >
               <Chevron dir="left" />
@@ -158,6 +161,7 @@ export default function Lightbox({ project, index, onIndex, onClose }) {
               type="button"
               className="icon-btn absolute right-3 top-1/2 -translate-y-1/2 backdrop-blur-sm sm:right-6"
               aria-label="Next piece"
+              data-sfx="slide"
               onClick={() => step(1)}
             >
               <Chevron />

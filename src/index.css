@@ -1329,3 +1329,70 @@
     }
   }
 }
+
+/* ── Round 10: mute all · ambience with its credit and volume · effects volume ── */
+@layer components {
+  .sound-panel {
+    width: min(292px, calc(100vw - 40px));
+    /* on a phone held sideways it scrolls inside itself instead of running off the screen */
+    max-height: calc(100dvh - var(--nav-h) - 14px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .sound-block {
+    padding: 0.85rem 1rem 0.8rem;
+    border-bottom: 1px solid rgb(201 214 242 / 0.1);
+  }
+  .sound-block:last-child {
+    border-bottom: 0;
+  }
+  /* what is playing: the track and who made it */
+  .sound-credit {
+    margin-top: 0.8rem;
+    padding-left: 0.75rem;
+    border-left: 1px solid var(--color-line-strong);
+  }
+  .sound-credit + .sound-volume {
+    margin-top: 0.95rem;
+  }
+  .sound-volume {
+    display: block;
+  }
+  .sound-volume input {
+    display: block;
+    width: 100%;
+    margin-top: 0.3rem;
+  }
+  button.sound-play {
+    transition:
+      color 0.25s,
+      background-color 0.25s,
+      border-color 0.25s;
+  }
+  button.sound-play:hover:not(:disabled) {
+    border-color: #fff;
+  }
+  button.sound-play:disabled {
+    cursor: default;
+    opacity: 0.45;
+  }
+  /* the mixtape, waiting: in its place, clearly not available yet */
+  .sound-soon {
+    cursor: default;
+    background: repeating-linear-gradient(135deg, transparent 0 7px, rgb(201 214 242 / 0.035) 7px 8px);
+  }
+  .sound-soon > span:first-child {
+    opacity: 0.62;
+  }
+  .sound-badge {
+    flex: none;
+    padding: 0.42rem 0.6rem 0.38rem;
+    font-size: 8.5px;
+    letter-spacing: 0.2em;
+    color: var(--color-cosmic);
+    border: 1px solid rgb(201 214 242 / 0.28);
+    border-radius: 999px;
+    background: rgb(4 7 16 / 0.6);
+    white-space: nowrap;
+  }
+}
