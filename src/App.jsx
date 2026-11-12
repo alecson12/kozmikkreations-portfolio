@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import MixtapePlayer from './components/MixtapePlayer.jsx'
 import Nav from './components/Nav.jsx'
 import ShootingStars from './components/ShootingStars.jsx'
 import { DirectorContext } from './cosmos/context.js'
@@ -106,6 +107,7 @@ export default function App() {
             {shown.scene === 'project' && <Project key={shown.projectId} phase={phase} projectId={shown.projectId} />}
             {shown.scene === 'contact' && <Contact key="contact" phase={phase} />}
           </main>
+          <MixtapePlayer />
         </DirectorContext.Provider>
       )}
     </>

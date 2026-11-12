@@ -1262,3 +1262,70 @@
     }
   }
 }
+
+/* ── Round 9: the docked Spotify mixtape ────────────────────────────────────── */
+@layer components {
+  .mixtape {
+    position: fixed;
+    right: 20px;
+    bottom: max(20px, env(safe-area-inset-bottom));
+    z-index: 35;
+    width: min(340px, calc(100vw - 40px));
+    border: 1px solid rgb(201 214 242 / 0.22);
+    background: linear-gradient(160deg, rgb(14 20 40 / 0.97), rgb(5 8 18 / 0.98));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.1),
+      0 24px 60px -20px rgb(0 0 0 / 0.9);
+    animation: rise 0.5s var(--ease-glide) both;
+  }
+  .mixtape-bar {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 38px;
+    padding: 0 4px 0 12px;
+  }
+  .mixtape-btn {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 32px;
+    height: 32px;
+    color: var(--color-mute);
+    transition: color 0.25s;
+  }
+  .mixtape-btn:hover,
+  .mixtape-btn[aria-pressed='true'] {
+    color: var(--color-ink);
+  }
+  .mixtape-frame {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: 0 0 2px 2px;
+    transition: height 0.4s var(--ease-glide);
+  }
+  /* tucked away: only the bar shows, the player keeps playing out of sight */
+  .mixtape[data-small='true'] {
+    width: min(250px, calc(100vw - 40px));
+  }
+  .mixtape[data-small='true'] .mixtape-frame {
+    position: absolute;
+    width: 300px;
+    height: 152px;
+    opacity: 0;
+    pointer-events: none;
+    clip-path: inset(50%);
+  }
+}
+
+@layer components {
+  @media (max-width: 767px) {
+    /* phones have no spare corner: tucked away means out of sight, still playing */
+    .mixtape[data-small='true'] {
+      opacity: 0;
+      pointer-events: none;
+      animation: none;
+    }
+  }
+}

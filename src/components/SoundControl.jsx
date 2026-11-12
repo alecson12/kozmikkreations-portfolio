@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
+import { SITE } from '../content/site.js'
 import { audio } from '../lib/audio.js'
 
 const svg = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true }
@@ -20,6 +21,16 @@ function NoteIcon({ size = 15 }) {
     </svg>
   )
 }
+function TapeIcon({ size = 15 }) {
+  return (
+    <svg {...svg} width={size} height={size}>
+      <rect x="3" y="6" width="18" height="12" rx="1.5" />
+      <circle cx="8.5" cy="11.5" r="1.8" />
+      <circle cx="15.5" cy="11.5" r="1.8" />
+      <path d="M7 18l1.5-2.5h7L17 18" />
+    </svg>
+  )
+}
 function PlayIcon({ playing, size = 13 }) {
   return (
     <svg {...svg} width={size} height={size} fill="currentColor" stroke="none">
@@ -33,7 +44,7 @@ function Switch({ label, hint, checked, onChange, disabled }) {
     <button type="button" role="switch" aria-checked={checked} disabled={disabled} className="sound-row" onClick={() => onChange(!checked)}>
       <span className="min-w-0 text-left">
         <span className="label block text-[10px] text-ink">{label}</span>
-        {hint && <span className="mt-1 block text-[11px] leading-snug text-mute">{hint}</span>}
+        {hint && <span className="mt-1 block truncate text-[11px] leading-snug text-mute">{hint}</span>}
       </span>
       <span className="sound-switch" data-on={checked} aria-hidden="true" />
     </button>
@@ -41,7 +52,7 @@ function Switch({ label, hint, checked, onChange, disabled }) {
 }
 
 // The small speaker in the navigation and the panel it opens:
-// all sound on/off · effects on/off · music play/pause · volume.
+// all sound on/off · effects on/off · ambience play/pause · the Spotify mixtape · volume.
 export default function SoundControl({ className = '' }) {
   const s = useSyncExternalStore(audio.subscribe, audio.get)
   const [open, setOpen] = useState(false)
@@ -69,16 +80,21 @@ export default function SoundControl({ className = '' }) {
   }, [open])
 
   const playing = s.music === 'on' || s.music === 'loading'
+  const ambient = audio.musicKind === 'ambient'
+  const musicLabel = ambient ? 'Ambience' : 'Music'
   const musicNote =
     s.music === 'none'
       ? 'Soundtrack coming soon'
       : s.music === 'error'
-        ? 'The soundtrack could not be loaded'
+        ? ambient
+          ? 'Not available on this device'
+          : 'The soundtrack could not be loaded'
         : !s.master
           ? 'Turn sound on to play'
           : playing
-            ? audio.musicTitle || 'Playing'
-            : audio.musicTitle || 'Off until you press play'
+            ? audio.musicTitle || (ambient ? 'Space ambience · playing' : 'Playing')
+            : audio.musicTitle || (ambient ? 'Space ambience · press play' : 'Off until you press play')
+  const mix = SITE.audio?.mixtape?.embed ? SITE.audio.mixtape : null
 
   return (
     <div ref={root} className={`relative ${className}`} data-sfx="none">
@@ -86,7 +102,7 @@ export default function SoundControl({ className = '' }) {
         ref={button}
         type="button"
         className="sound-toggle"
-        aria-label={`Sound settings. Sound is ${s.master ? 'on' : 'off'}${playing ? ', music is playing' : ''}`}
+        aria-label={`Sound settings. Sound is ${s.master ? 'on' : 'off'}${playing ? ', ambience is playing' : ''}${s.mixtape ? ', the mixtape is open' : ''}`}
         title="Sound"
         aria-expanded={open}
         aria-controls={id}
@@ -94,7 +110,7 @@ export default function SoundControl({ className = '' }) {
         onClick={() => setOpen((v) => !v)}
       >
         <SpeakerIcon on={s.master} />
-        {playing && s.master && <span className="sound-dot" aria-hidden="true" />}
+        {(playing || s.mixtape) && s.master && <span className="sound-dot" aria-hidden="true" />}
       </button>
 
       {open && (
@@ -107,19 +123,40 @@ export default function SoundControl({ className = '' }) {
             className="sound-row"
             disabled={s.music === 'none' || s.music === 'error' || !s.master}
             aria-pressed={playing}
-            aria-label={playing ? 'Pause background music' : 'Play background music'}
+            aria-label={playing ? `Pause the background ${musicLabel.toLowerCase()}` : `Play the background ${musicLabel.toLowerCase()}`}
             onClick={audio.toggleMusic}
           >
             <span className="min-w-0 text-left">
               <span className="label flex items-center gap-2 text-[10px] text-ink">
-                <NoteIcon /> Music
+                <NoteIcon /> {musicLabel}
               </span>
-              <span className="mt-1 block text-[11px] leading-snug text-mute">{musicNote}</span>
+              <span className="mt-1 block truncate text-[11px] leading-snug text-mute">{musicNote}</span>
             </span>
             <span className="sound-play" data-on={playing} aria-hidden="true">
               <PlayIcon playing={playing} />
             </span>
           </button>
+
+          {mix && (
+            <button
+              type="button"
+              className="sound-row"
+              disabled={!s.master}
+              aria-pressed={s.mixtape}
+              aria-label={!s.mixtape ? `Open the mixtape: ${mix.title}, in Spotify's player` : s.mixtapeSmall ? 'Show the mixtape player again' : `Close the mixtape: ${mix.title}`}
+              onClick={() => (s.mixtape && s.mixtapeSmall ? audio.setMixtapeSmall(false) : audio.setMixtape(!s.mixtape))}
+            >
+              <span className="min-w-0 text-left">
+                <span className="label flex items-center gap-2 text-[10px] text-ink">
+                  <TapeIcon /> Mixtape
+                </span>
+                <span className="mt-1 block truncate text-[11px] leading-snug text-mute">{!s.mixtape ? mix.note || mix.title : s.mixtapeSmall ? 'Tucked away · show player' : 'Open in the corner'}</span>
+              </span>
+              <span className="sound-play" data-on={s.mixtape} aria-hidden="true">
+                {s.mixtape && !s.mixtapeSmall ? <span className="block h-px w-3 bg-current" /> : <PlayIcon playing={false} />}
+              </span>
+            </button>
+          )}
 
           <label className="sound-row sound-volume">
             <span className="label text-[10px] text-ink">Volume</span>

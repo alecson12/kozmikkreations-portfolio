@@ -1,4 +1,7 @@
-BACKGROUND MUSIC FOR THE SITE
+BACKGROUND MUSIC FOR THE SITE (optional)
+
+The site already has a generated space ambience, so this folder can stay empty.
+Use it only if you want your own music file to play instead.
 
 1. Put ONE music file in this folder (MP3 is safest; keep it under about 5 MB).
    Suggested name:  kozmik-ambient.mp3

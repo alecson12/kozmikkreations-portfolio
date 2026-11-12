@@ -3,8 +3,10 @@
 //   · Sound effects are made on the spot with the Web Audio API (no sound files):
 //     short, soft sine tones and a breath of filtered noise, tuned to one chord so
 //     they always sit well together.
-//   · Background music is one optional file (see content/site.js → audio.music).
-//     It never starts by itself: only the visitor's own click on the music control.
+//   · The background is a space ambience generated live in the same way, or one
+//     optional music file if you supply it (see content/site.js → audio).
+//     It never starts by itself: only the visitor's own click on the control.
+//   · The mixtape is Spotify's own player, opened only when the visitor asks for it.
 //   · Nothing here makes a sound, or even creates an audio context, before the
 //     visitor has clicked, tapped or pressed a key (browsers require that).
 //   · The visitor's choices (sound on/off, effects on/off, volume) are remembered.
@@ -17,8 +19,11 @@ const cfg = SITE.audio ?? {}
 const MUSIC_FILE = cfg.music?.file ? asset(`audio/${cfg.music.file}`) : ''
 const MUSIC_LEVEL = cfg.music?.level ?? 0.32 // how loud music sits at full volume (0–1): kept low on purpose
 const SFX_LEVEL = cfg.sfxLevel ?? 2.2
+const USE_AMBIENT = !MUSIC_FILE && cfg.ambient?.on !== false
+const AMBIENT_LEVEL = cfg.ambient?.level ?? 0.35 // how strong the ambience is before the visitor's volume
 const FADE_IN = 1.6
 const FADE_OUT = 0.9
+const AMBIENT_FADE_IN = 3.2 // the ambience arrives slowly, like a room coming into focus
 
 const prefersCalm = () => {
   try {
@@ -44,8 +49,9 @@ function loadPrefs() {
   return base
 }
 
-// music: 'none' (no file supplied) · 'off' · 'loading' · 'on' · 'error'
-let state = { ...loadPrefs(), music: MUSIC_FILE ? 'off' : 'none' }
+// music: 'none' (nothing to play) · 'off' · 'loading' · 'on' · 'error'
+// mixtape: is the Spotify player open (never remembered between visits)
+let state = { ...loadPrefs(), music: MUSIC_FILE || USE_AMBIENT ? 'off' : 'none', mixtape: false, mixtapeSmall: false }
 const listeners = new Set()
 function set(patch) {
   state = { ...state, ...patch }
@@ -239,11 +245,195 @@ function play(name, { force = false } = {}) {
   return true
 }
 
-// ── background music ────────────────────────────────────────────────────────
+// ── ambience: a space soundscape generated live (used when no music file is set) ──
+// A deep drone on D and A, a slow-breathing pad built from the same chord as the
+// effects, a breath of filtered noise, and now and then a far-off note that blooms
+// into a long reverb. It never repeats exactly, and it needs no audio file.
+let amb = null
+let ambStopTimer = 0
+
+function reverbTail(seconds) {
+  const len = Math.floor(ctx.sampleRate * seconds)
+  const b = ctx.createBuffer(2, len, ctx.sampleRate)
+  for (let c = 0; c < 2; c++) {
+    const d = b.getChannelData(c)
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.6)
+  }
+  return b
+}
+
+function buildAmbient() {
+  const t = ctx.currentTime
+  const live = [] // everything that has to be stopped later
+  const gain = ctx.createGain()
+  gain.gain.value = 0
+  const soft = ctx.createBiquadFilter()
+  soft.type = 'lowpass'
+  soft.frequency.value = 2200
+  const mix = ctx.createGain()
+  const dry = ctx.createGain()
+  dry.gain.value = 0.5
+  const verb = ctx.createConvolver()
+  verb.buffer = reverbTail(5)
+  const wet = ctx.createGain()
+  wet.gain.value = 0.85
+  mix.connect(dry).connect(soft)
+  mix.connect(verb).connect(wet).connect(soft)
+  soft.connect(gain).connect(out)
+
+  // something that slowly rises and falls: used for loudness, brightness and position
+  const drift = (param, rate, depth) => {
+    const o = ctx.createOscillator()
+    o.frequency.value = rate
+    const g = ctx.createGain()
+    g.gain.value = depth
+    o.connect(g).connect(param)
+    o.start(t)
+    live.push(o)
+  }
+  const placed = (node, pan) => {
+    if (!ctx.createStereoPanner) return node.connect(mix)
+    const p = ctx.createStereoPanner()
+    p.pan.value = pan
+    node.connect(p).connect(mix)
+  }
+
+  // the drone
+  const deep = ctx.createBiquadFilter()
+  deep.type = 'lowpass'
+  deep.frequency.value = 240
+  deep.Q.value = 0.5
+  drift(deep.frequency, 0.031, 80)
+  deep.connect(mix)
+  for (const [freq, cents, level] of [[73.42, -6, 0.22], [73.42, 7, 0.22], [110, -4, 0.13], [110, 5, 0.13]]) {
+    const o = ctx.createOscillator()
+    o.type = 'sawtooth'
+    o.frequency.value = freq
+    o.detune.value = cents
+    const g = ctx.createGain()
+    g.gain.value = level
+    o.connect(g).connect(deep)
+    o.start(t)
+    live.push(o)
+  }
+
+  // the pad: D · A · E · F♯ · A · D, each voice swelling at its own slow pace
+  for (const [freq, level, type, rate, cents, pan] of [
+    [146.83, 0.11, 'sine', 0.043, -3, -0.3],
+    [220.0, 0.09, 'triangle', 0.057, 4, 0.35],
+    [329.63, 0.055, 'sine', 0.071, -5, -0.55],
+    [369.99, 0.05, 'sine', 0.049, 3, 0.6],
+    [440.0, 0.035, 'sine', 0.083, 6, 0.15],
+    [587.33, 0.022, 'sine', 0.037, -4, -0.15],
+  ]) {
+    const o = ctx.createOscillator()
+    o.type = type
+    o.frequency.value = freq
+    o.detune.value = cents
+    const g = ctx.createGain()
+    g.gain.value = level * 0.6
+    drift(g.gain, rate, level * 0.4)
+    o.connect(g)
+    placed(g, pan)
+    o.start(t)
+    live.push(o)
+  }
+
+  // the air
+  const len = ctx.sampleRate * 5
+  const hiss = ctx.createBuffer(1, len, ctx.sampleRate)
+  const hd = hiss.getChannelData(0)
+  for (let i = 0; i < len; i++) hd[i] = Math.random() * 2 - 1
+  const wind = ctx.createBufferSource()
+  wind.buffer = hiss
+  wind.loop = true
+  const band = ctx.createBiquadFilter()
+  band.type = 'bandpass'
+  band.frequency.value = 720
+  band.Q.value = 0.8
+  drift(band.frequency, 0.021, 360)
+  const windLevel = ctx.createGain()
+  windLevel.gain.value = 0.02
+  drift(windLevel.gain, 0.017, 0.012)
+  wind.connect(band).connect(windLevel).connect(mix)
+  wind.start(t)
+  live.push(wind)
+
+  // far-off notes
+  const STARS = [880, 1174.66, 1318.51, 1479.98, 1760, 2349.32]
+  let timer = 0
+  const star = () => {
+    if (!document.hidden && ctx.state === 'running') {
+      const now = ctx.currentTime
+      const dur = 3.5 + Math.random() * 3
+      const o = ctx.createOscillator()
+      o.frequency.value = STARS[Math.floor(Math.random() * STARS.length)]
+      const g = ctx.createGain()
+      g.gain.setValueAtTime(0.0001, now)
+      g.gain.exponentialRampToValueAtTime(0.012 + Math.random() * 0.016, now + dur * 0.35)
+      g.gain.exponentialRampToValueAtTime(0.0001, now + dur)
+      o.connect(g).connect(verb)
+      o.start(now)
+      o.stop(now + dur + 0.1)
+    }
+    timer = window.setTimeout(star, 2600 + Math.random() * 5200)
+  }
+  timer = window.setTimeout(star, 1800)
+
+  return {
+    gain,
+    stop() {
+      window.clearTimeout(timer)
+      for (const n of live) {
+        try {
+          n.stop()
+        } catch {
+          /* already stopped */
+        }
+      }
+      gain.disconnect()
+    },
+  }
+}
+
+const ambientTo = (level, seconds) => {
+  if (!amb) return
+  amb.gain.gain.cancelScheduledValues(ctx.currentTime)
+  amb.gain.gain.setTargetAtTime(level, ctx.currentTime, seconds / 3)
+}
+
+function startAmbient() {
+  unlock()
+  if (!ctx) return set({ music: 'error' })
+  window.clearTimeout(ambStopTimer)
+  try {
+    amb = amb ?? buildAmbient()
+  } catch {
+    amb = null
+    return set({ music: 'error' })
+  }
+  set({ music: 'on' })
+  ambientTo(AMBIENT_LEVEL, AMBIENT_FADE_IN)
+}
+
+function stopAmbient(next) {
+  set({ music: next })
+  if (!amb) return
+  ambientTo(0, FADE_OUT)
+  window.clearTimeout(ambStopTimer)
+  // once it has faded away the generators are switched off, so nothing runs in silence
+  ambStopTimer = window.setTimeout(() => {
+    amb?.stop()
+    amb = null
+  }, FADE_OUT * 1000 * 2.2)
+}
+
+// ── background music from a file ────────────────────────────────────────────
 let el = null
 let fadeId = 0
 let pausedByTab = false
 let pausedByMute = false
+let pausedByMixtape = false
 
 const musicTarget = () => (state.master ? MUSIC_LEVEL * state.volume : 0)
 
@@ -276,6 +466,7 @@ function ensureMusic() {
 }
 
 function startMusic() {
+  if (USE_AMBIENT) return startAmbient()
   if (!ensureMusic()) return
   set({ music: 'loading' })
   const p = el.play()
@@ -288,6 +479,7 @@ function startMusic() {
 }
 
 function stopMusic(next = 'off') {
+  if (USE_AMBIENT) return stopAmbient(next)
   if (!el) return
   set({ music: next })
   fadeTo(0, FADE_OUT, () => el.pause())
@@ -295,14 +487,34 @@ function stopMusic(next = 'off') {
 
 // Only ever called from the visitor's own click on the music control.
 function toggleMusic() {
-  if (!MUSIC_FILE || !state.master) return
-  pausedByTab = pausedByMute = false
-  if (state.music === 'on' || state.music === 'loading') stopMusic()
-  else startMusic()
+  if (state.music === 'none' || !state.master) return
+  pausedByTab = pausedByMute = pausedByMixtape = false
+  if (state.music === 'on' || state.music === 'loading') return stopMusic()
+  if (state.mixtape) set({ mixtape: false, mixtapeSmall: false }) // one source of music at a time
+  startMusic()
+}
+
+// The Spotify player. Opening it lets the ambience step aside; closing it brings the ambience back.
+function setMixtape(open) {
+  if (open === state.mixtape || (open && !state.master)) return
+  if (open) {
+    pausedByMixtape = state.music === 'on' || state.music === 'loading'
+    if (pausedByMixtape) stopMusic('off')
+    play('on')
+    set({ mixtape: true, mixtapeSmall: false })
+  } else {
+    set({ mixtape: false, mixtapeSmall: false })
+    if (pausedByMixtape && state.master) startMusic()
+    pausedByMixtape = false
+  }
 }
 
 // the tab goes to the background → music rests, and picks up again on return
 document.addEventListener('visibilitychange', () => {
+  if (USE_AMBIENT) {
+    if (state.music === 'on') ambientTo(document.hidden ? 0 : AMBIENT_LEVEL, document.hidden ? 0.3 : AMBIENT_FADE_IN)
+    return
+  }
   if (document.hidden) {
     if (state.music === 'on') {
       pausedByTab = true
@@ -322,6 +534,10 @@ function setMaster(on) {
   if (!on) play('off')
   set({ master: on })
   if (out) out.gain.setTargetAtTime(on ? state.volume : 0, ctx.currentTime, on ? 0.02 : 0.12)
+  if (!on && state.mixtape) {
+    pausedByMixtape = false
+    set({ mixtape: false, mixtapeSmall: false }) // the only way to silence Spotify's player is to close it
+  }
   if (!on && state.music === 'on') {
     pausedByMute = true
     stopMusic('off')
@@ -361,8 +577,11 @@ export const audio = {
   setSfx,
   setVolume,
   toggleMusic,
-  hasMusic: Boolean(MUSIC_FILE),
+  setMixtape,
+  setMixtapeSmall: (small) => state.mixtape && set({ mixtapeSmall: small }),
+  musicKind: MUSIC_FILE ? 'file' : USE_AMBIENT ? 'ambient' : 'none',
   musicTitle: cfg.music?.title ?? '',
+  ambient: () => (amb ? { level: amb.gain.gain.value } : null),
   log,
   running: () => Boolean(ctx && ctx.state === 'running'),
   musicElement: () => el,
