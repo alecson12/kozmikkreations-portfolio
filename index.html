@@ -18,6 +18,23 @@
     <link rel="icon" type="image/png" sizes="192x192" href="./brand/favicon-white-192.png" media="(prefers-color-scheme: dark)" data-scheme="dark" />
     <link rel="apple-touch-icon" href="./brand/apple-touch-icon.png" />
     <title>Kozmik Kreations — Graphic Design Portfolio</title>
+    <!-- Google Analytics 4. Paste the Measurement ID (G-XXXXXXXXXX) between the quotes.
+         While it is empty, nothing is loaded and nothing is sent. -->
+    <script>
+      var GA_ID = ''
+      if (GA_ID) {
+        var ga = document.createElement('script')
+        ga.async = true
+        ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_ID)
+        document.head.appendChild(ga)
+        window.dataLayer = window.dataLayer || []
+        function gtag() {
+          dataLayer.push(arguments)
+        }
+        gtag('js', new Date())
+        gtag('config', GA_ID)
+      }
+    </script>
   </head>
   <body style="background: #03040a">
     <div id="root"></div>
