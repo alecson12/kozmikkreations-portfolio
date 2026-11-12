@@ -4,6 +4,7 @@ import Nav from './components/Nav.jsx'
 import ShootingStars from './components/ShootingStars.jsx'
 import { DirectorContext } from './cosmos/context.js'
 import { createDirector } from './cosmos/director.js'
+import { PROJECTS } from './content/projects.js'
 import { SITE } from './content/site.js'
 import { routeKey, useRoute } from './lib/router.js'
 import { startFavicon } from './lib/favicon.js'
@@ -90,6 +91,21 @@ export default function App() {
   useEffect(() => {
     document.title =
       shown.scene === 'home' ? 'Kozmik Kreations — Graphic Design Portfolio' : `${titleFor(shown)} — Kozmik Kreations`
+  }, [shown])
+
+  // analytics: the first page is counted by the snippet in index.html; every page after it is
+  // counted here. Does nothing while analytics is off (no GA_ID in index.html).
+  const counted = useRef(false)
+  useEffect(() => {
+    if (!counted.current) {
+      counted.current = true
+      return
+    }
+    const project = shown.scene === 'project' && PROJECTS.find((p) => p.id === shown.projectId)
+    window.gtag?.('event', 'page_view', {
+      page_location: window.location.href,
+      page_title: project ? `${project.title} — Kozmik Kreations` : document.title,
+    })
   }, [shown])
 
   const intro = firstLoad.current

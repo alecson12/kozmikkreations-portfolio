@@ -28,7 +28,8 @@
         ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_ID)
         document.head.appendChild(ga)
         window.dataLayer = window.dataLayer || []
-        function gtag() {
+        // also used by src/App.jsx, which reports each page inside the site
+        window.gtag = function () {
           dataLayer.push(arguments)
         }
         gtag('js', new Date())
