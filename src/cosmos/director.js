@@ -220,15 +220,12 @@ export function createDirector(canvas) {
     if (visible >= length + 240) return [length / 2, length / 2]
     const first = systems[0]
     const lastSys = systems[systems.length - 1]
-    let lo = Math.min(first.m, visible / 2 - 120)
+    const lo = Math.min(first.m, visible / 2 - 120)
     let hi = Math.max(lastSys.m, length - visible / 2 + 120)
     if (portrait) {
       // on phones the name sits under its planet and the controls cover the bottom of the screen,
-      // so the first and last planets must be able to come all the way up to the middle
-      for (const id in state.layout.planets) {
-        lo = Math.min(lo, state.layout.planets[id].m)
-        hi = Math.max(hi, state.layout.planets[id].m)
-      }
+      // so the last planet must be able to come all the way up to the middle (the top end is unchanged)
+      for (const id in state.layout.planets) hi = Math.max(hi, state.layout.planets[id].m)
     }
     return [lo, hi]
   }
