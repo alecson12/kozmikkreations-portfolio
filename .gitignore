@@ -11,3 +11,6 @@ dist
 
 # The ambient track as supplied. The site plays the web copy in public/audio, made by `npm run assets`.
 /*.mp3
+
+# pictures made for social media posts, not part of the site
+/SocialMedia/

@@ -45,7 +45,6 @@ export default function About({ phase }) {
   const c = SITE.contact.commissions
   const portrait = aboutMedia(a.portrait)
   const signature = aboutMedia(a.id.signature.image)
-  const wordmark = aboutMedia(a.wordmark.image)
   const stages = a.markStages.map((s) => ({ label: s.label, item: aboutMedia(s.image) })).filter((s) => s.item)
   const [pop, setPop] = useState(null)
   const heading = 'display text-[13px] tracking-[0.16em] text-cosmic sm:text-[14px]'
@@ -251,14 +250,16 @@ export default function About({ phase }) {
         </div>
 
         {/* ── the wordmark ────────────────────────────────────────────────── */}
-        {wordmark && (
+        {a.wordmark && (
           <div className="rise mt-16" style={{ '--i': 7 }}>
             <div className="flex items-center gap-5">
               <h2 className="eyebrow whitespace-nowrap">{a.wordmark.title}</h2>
               <div className="hairline flex-1" />
             </div>
             <figure className="logo-block id-card mt-7 overflow-hidden">
-              <Picture item={wordmark} alt="The official Kozmik Kreations wordmark" sizes="(max-width: 900px) 100vw, 900px" className="block h-auto w-full" />
+              <div className="wordmark-stage">
+                <Wordmark className="wordmark-glow block h-auto w-full" />
+              </div>
               <figcaption className="label border-t border-line px-4 py-3 text-[10px] text-cosmic sm:px-6">{a.wordmark.caption}</figcaption>
             </figure>
           </div>

@@ -137,8 +137,8 @@ export const SITE = {
       { name: 'Canva', icon: 'Canva Icon' },
     ],
     markTitle: 'Kozmik’s Icon Breakdown',
-    // shown after the icon breakdown: the official wordmark artwork (a file in AboutMe/)
-    wordmark: { title: 'Kozmik’s Wordmark', image: 'ShapingKozmik_pg3', caption: 'Official wordmark' },
+    // shown after the icon breakdown: the official wordmark (KozmikLogos/KozmikTypo_White.png) with a soft glow
+    wordmark: { title: 'Kozmik’s Wordmark', caption: 'Official wordmark' },
     // The logo icon versions shown one after another (files in AboutMe/LogoIcon), in this order.
     markStages: [
       { image: 'KozmikIcon_Sketch', label: 'Sketch' },

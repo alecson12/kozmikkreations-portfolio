@@ -220,7 +220,17 @@ export function createDirector(canvas) {
     if (visible >= length + 240) return [length / 2, length / 2]
     const first = systems[0]
     const lastSys = systems[systems.length - 1]
-    return [Math.min(first.m, visible / 2 - 120), Math.max(lastSys.m, length - visible / 2 + 120)]
+    let lo = Math.min(first.m, visible / 2 - 120)
+    let hi = Math.max(lastSys.m, length - visible / 2 + 120)
+    if (portrait) {
+      // on phones the name sits under its planet and the controls cover the bottom of the screen,
+      // so the first and last planets must be able to come all the way up to the middle
+      for (const id in state.layout.planets) {
+        lo = Math.min(lo, state.layout.planets[id].m)
+        hi = Math.max(hi, state.layout.planets[id].m)
+      }
+    }
+    return [lo, hi]
   }
 
   const anchor = () => (state.layout.portrait ? state.vh * 0.47 : state.vw * 0.5)
@@ -792,6 +802,12 @@ export function createDirector(canvas) {
     const placed = {}
     decorBodies(bodies)
     universeBodies(bodies, placed)
+    // Only while developing: a script can arrange the sky itself to take a still picture of it
+    // (used for the square social-media background). Never part of the published site.
+    if (import.meta.env.DEV && window.__kozmikStage) {
+      bodies.length = 0
+      bodies.push(...window.__kozmikStage({ vw: state.vw, vh: state.vh, time, planets: PLANETS, sun: SUN, hex }))
+    }
 
     const inProject = pres.universe * open
     if (engine) {
@@ -807,6 +823,7 @@ export function createDirector(canvas) {
         starAmount: lerp(1, 0.8, inProject),
         dim: inProject * 0.28,
         bodies,
+        ...(import.meta.env.DEV && window.__kozmikStage?.frame),
       })
 
       // if the device is struggling, draw at a lower resolution

@@ -811,6 +811,16 @@
     width: min(100%, max(560px, calc(100dvh - var(--nav-h) - 84px)));
     margin-inline: auto;
   }
+  /* the wordmark on its own, with a soft glow */
+  .wordmark-stage {
+    display: grid;
+    place-items: center;
+    padding: clamp(44px, 11vw, 96px) clamp(28px, 12%, 110px);
+  }
+  .wordmark-glow {
+    max-width: 520px;
+    filter: drop-shadow(0 0 5px rgb(214 226 255 / 0.4)) drop-shadow(0 0 22px rgb(120 160 255 / 0.3));
+  }
   .logo-stage-view {
     height: auto;
     aspect-ratio: 1;
